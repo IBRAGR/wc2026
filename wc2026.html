@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="FIFA World Cup 2026 Travel Guide – Host cities, stadiums, hotels, travel tips for USA, Canada & Mexico."/>
+<title>World Cup 2026 – Ultimate Travel Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
+
+<style>
+/* ════════════════════════════════════════════
+   CSS CUSTOM PROPERTIES + THEME
+════════════════════════════════════════════ */
+:root {
+  --brand: #C8102E;
+  --brand2: #003DA5;
+  --gold: #F0A500;
+  --green: #007A33;
+
+  /* Light theme */
+  --bg: #F8F6F1;
+  --bg2: #FFFFFF;
+  --bg3: #F0EDE5;
+  --surface: rgba(255,255,255,0.85);
+  --border: rgba(0,0,0,0.09);
+  --text: #1A1209;
+  --text2: #5A4F3E;
+  --text3: #9C8E7A;
+  --shadow: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-lg: 0 16px 64px rgba(0,0,0,0.12);
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --radius: 16px;
+  --radius-sm: 8px;
+  --transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #0E0C09;
+  --bg2: #181410;
+  --bg3: #221E17;
+  --surface: rgba(30,26,20,0.92);
+  --border: rgba(255,255,255,0.09);
+  --text: #F5F0E8;
+  --text2: #C4B89A;
+  --text3: #7A6E5A;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow-lg: 0 16px 64px rgba(0,0,0,0.55);
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+::selection { background: var(--brand); color: #fff; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg3); }
+::-webkit-scrollbar-thumb { background: var(--brand); border-radius: 3px; }
+img { max-width: 100%; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: var(--font-body); }
+
+/* ════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════ */
+#navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+  background: var(--surface);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all var(--transition);
+}
+#navbar.scrolled { box-shadow: var(--shadow); }
+
+.nav-logo {
+  display: flex; align-items: center; gap: .6rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+.nav-logo-ball { font-size: 1.4rem; animation: spin 8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.nav-logo span { color: var(--brand); }
+
+.nav-links {
+  display: flex; align-items: center; gap: .25rem;
+  list-style: none;
+}
+.nav-links a {
+  padding: .45rem .85rem;
+  border-radius: var(--radius-sm);
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--text2);
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--brand); background: rgba(200,16,46,0.08); }
+
+.nav-actions { display: flex; align-items: center; gap: .6rem; }
+
+/* Search toggle */
+.search-toggle-btn, .dark-toggle-btn, .menu-btn {
+  width: 40px; height: 40px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg2);
+  color: var(--text);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  transition: all var(--transition);
+}
+.search-toggle-btn:hover, .dark-toggle-btn:hover, .menu-btn:hover {
+  border-color: var(--brand); color: var(--brand); background: rgba(200,16,46,0.06);
+}
+.menu-btn { display: none; }
+
+/* ── Search Bar overlay ── */
+.search-overlay {
+  position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 120px;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--transition);
+}
+.search-overlay.open { opacity: 1; pointer-events: all; }
+.search-box {
+  width: min(680px, 90vw);
+  background: var(--bg2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transform: translateY(-20px);
+  transition: transform var(--transition);
+}
+.search-overlay.open .search-box { transform: translateY(0); }
+.search-input-wrap {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.search-input-wrap span { font-size: 1.2rem; color: var(--text3); }
+#searchInput {
+  flex: 1; border: none; outline: none;
+  background: none; font-size: 1.1rem;
+  font-family: var(--font-body); color: var(--text);
+}
+#searchInput::placeholder { color: var(--text3); }
+.search-close-btn {
+  background: none; border: none; color: var(--text3);
+  font-size: 1.4rem; line-height: 1;
+  transition: color var(--transition);
+}
+.search-close-btn:hover { color: var(--brand); }
+.search-results {
+  max-height: 380px; overflow-y: auto;
+  padding: .75rem;
+}
+.search-result-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: .75rem 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.search-result-item:hover { background: var(--bg3); }
+.sr-icon { font-size: 1.4rem; width: 36px; text-align: center; }
+.sr-info strong { display: block; font-size: .9rem; color: var(--text); }
+.sr-info span { font-size: .78rem; color: var(--text3); }
+.sr-tag {
+  margin-left: auto;
+  padding: .2rem .6rem;
+  border-radius: 4px;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.tag-city { background: rgba(0,61,165,0.12); color: var(--brand2); }
+.tag-stadium { background: rgba(200,16,46,0.1); color: var(--brand); }
+.tag-hotel { background: rgba(240,165,0,0.12); color: var(--gold); }
+.search-empty { padding: 2rem; text-align: center; color: var(--text3); font-size: .95rem; }
+
+/* Mobile nav drawer */
+.mobile-nav {
+  position: fixed; top: 70px; left: 0; right: 0; bottom: 0;
+  background: var(--bg2); z-index: 900;
+  padding: 2rem clamp(1rem,4vw,2rem);
+  transform: translateX(100%);
+  transition: transform var(--transition);
+  overflow-y: auto;
+}
+.mobile-nav.open { transform: translateX(0); }
+.mobile-nav-links { list-style: none; }
+.mobile-nav-links li { border-bottom: 1px solid var(--border); }
+.mobile-nav-links a {
+  display: block; padding: 1rem .5rem;
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--text);
+  transition: color var(--transition);
+}
+.mobile-nav-links a:hover { color: var(--brand); }
+
+/* ════════════════════════════════════════════
+   HERO
+════════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 80px clamp(1.5rem,5vw,5rem) 5rem;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 90% 70% at 70% 50%, rgba(200,16,46,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 80% at 10% 80%, rgba(0,61,165,0.07) 0%, transparent 60%),
+    var(--bg);
+}
+[data-theme="dark"] .hero-bg {
+  background:
+    radial-gradient(ellipse 90% 70% at 70% 50%, rgba(200,16,46,0.15) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 80% at 10% 80%, rgba(0,61,165,0.12) 0%, transparent 60%),
+    var(--bg);
+}
+
+/* Animated pitch lines */
+.hero-pitch {
+  position: absolute; inset: 0; overflow: hidden; opacity: .07;
+  pointer-events: none;
+}
+[data-theme="dark"] .hero-pitch { opacity: .12; }
+.pitch-line {
+  position: absolute; background: var(--brand);
+}
+
+.hero-flag-strip {
+  position: absolute; top: 0; left: 0; right: 0; height: 5px;
+  background: linear-gradient(90deg, #C8102E 33%, #FFFFFF 33% 66%, #003DA5 66%);
+}
+
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 700px;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .4rem 1rem;
+  background: rgba(200,16,46,0.1);
+  border: 1px solid rgba(200,16,46,0.25);
+  border-radius: 30px;
+  font-size: .78rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: 1.5rem;
+  animation: fadeUp .8s both;
+}
+
+h1.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  line-height: .95;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+  animation: fadeUp .9s .1s both;
+}
+h1.hero-title .red { color: var(--brand); }
+h1.hero-title .blue { color: var(--brand2); }
+
+.hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: var(--text2);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  line-height: 1.75;
+  animation: fadeUp 1s .2s both;
+}
+
+.hero-ctas {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  animation: fadeUp 1s .3s both;
+}
+.btn-primary {
+  padding: .85rem 2rem;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: .95rem; font-weight: 700;
+  letter-spacing: .5px;
+  transition: all var(--transition);
+  box-shadow: 0 4px 20px rgba(200,16,46,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(200,16,46,0.4); }
+.btn-secondary {
+  padding: .85rem 2rem;
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: .95rem; font-weight: 600;
+  transition: all var(--transition);
+}
+.btn-secondary:hover { border-color: var(--brand); color: var(--brand); background: rgba(200,16,46,0.05); }
+
+.hero-flags {
+  display: flex; gap: .5rem; align-items: center;
+  margin-top: 2rem;
+  animation: fadeUp 1s .4s both;
+  font-size: .8rem; color: var(--text3);
+}
+.hero-flags span { font-size: 1.6rem; }
+
+/* Hero visual side */
+.hero-visual {
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 45%;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+  animation: fadeRight 1s .3s both;
+}
+@media(max-width:900px){ .hero-visual { display: none; } }
+.hero-ball {
+  font-size: clamp(8rem, 20vw, 18rem);
+  animation: ballFloat 6s ease-in-out infinite;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.2));
+  line-height: 1;
+}
+@keyframes ballFloat {
+  0%,100% { transform: translateY(0) rotate(-10deg); }
+  50% { transform: translateY(-30px) rotate(10deg); }
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  color: var(--text3); font-size: .72rem; letter-spacing: 2px; text-transform: uppercase;
+  animation: fadeUp 1s .8s both;
+}
+.scroll-arrow { animation: bounce 2s infinite; font-size: 1rem; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+@keyframes fadeRight { from{opacity:0;transform:translateX(40px)} to{opacity:1;transform:none} }
+
+/* ════════════════════════════════════════════
+   COUNTDOWN
+════════════════════════════════════════════ */
+#countdown {
+  background: var(--brand);
+  padding: 3.5rem clamp(1.5rem,5vw,5rem);
+  position: relative; overflow: hidden;
+}
+#countdown::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.countdown-inner {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto;
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 2rem;
+}
+.countdown-label {
+  color: rgba(255,255,255,0.85);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 1px;
+}
+.countdown-label strong { color: #fff; font-size: 1.15em; }
+.countdown-units {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+}
+.cd-unit {
+  text-align: center; min-width: 80px;
+}
+.cd-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #fff;
+  line-height: 1;
+  background: rgba(255,255,255,0.12);
+  border-radius: var(--radius-sm);
+  padding: .5rem .75rem;
+  min-width: 90px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.cd-lbl {
+  display: block; margin-top: .4rem;
+  font-size: .7rem; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(255,255,255,0.65);
+}
+.cd-separator {
+  font-family: var(--font-display);
+  font-size: 2.5rem; color: rgba(255,255,255,0.5);
+  align-self: center; padding-bottom: .8rem;
+}
+
+/* ════════════════════════════════════════════
+   SECTIONS — shared layout
+════════════════════════════════════════════ */
+.section {
+  padding: 6rem clamp(1.5rem,5vw,5rem);
+  max-width: 1400px; margin: 0 auto;
+}
+.section-full { padding: 6rem clamp(1.5rem,5vw,5rem); }
+
+.section-head { margin-bottom: 3.5rem; }
+.section-eyebrow {
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--brand);
+  margin-bottom: .6rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.section-eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--brand); }
+h2.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: .75rem;
+}
+.section-desc {
+  font-size: 1.05rem; color: var(--text2);
+  max-width: 560px; font-weight: 300; line-height: 1.75;
+}
+
+/* reveal animation */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ════════════════════════════════════════════
+   HOST CITIES
+════════════════════════════════════════════ */
+#cities { background: var(--bg); }
+
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.city-card {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+}
+.city-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+.city-img {
+  height: 180px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 5rem;
+  transition: transform var(--transition);
+}
+.city-card:hover .city-img { transform: scale(1.04); }
+
+.city-flag {
+  position: absolute; top: 12px; right: 12px;
+  font-size: 1.5rem;
+  background: rgba(255,255,255,0.9);
+  border-radius: 6px; padding: .15rem .35rem;
+  backdrop-filter: blur(4px);
+}
+.city-country-badge {
+  position: absolute; bottom: 12px; left: 12px;
+  padding: .3rem .7rem;
+  border-radius: 20px;
+  font-size: .68rem; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+.badge-usa { background: rgba(200,16,46,0.85); color: #fff; }
+.badge-can { background: rgba(200,16,46,0.85); color: #fff; }
+.badge-mex { background: rgba(0,122,51,0.85); color: #fff; }
+
+.city-body { padding: 1.4rem 1.5rem; }
+.city-name {
+  font-family: var(--font-serif);
+  font-size: 1.3rem; font-weight: 700;
+  margin-bottom: .35rem;
+}
+.city-meta {
+  display: flex; align-items: center; gap: 1rem;
+  font-size: .8rem; color: var(--text3);
+  margin-bottom: .75rem; flex-wrap: wrap;
+}
+.city-meta span { display: flex; align-items: center; gap: .3rem; }
+.city-desc {
+  font-size: .88rem; color: var(--text2);
+  line-height: 1.65; margin-bottom: 1rem;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.city-link {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .82rem; font-weight: 700; color: var(--brand);
+  transition: gap var(--transition);
+}
+.city-link:hover { gap: .6rem; }
+
+/* ════════════════════════════════════════════
+   STADIUMS
+════════════════════════════════════════════ */
+#stadiums { background: var(--bg3); }
+
+.stadiums-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+@media(max-width:900px){ .stadiums-layout { grid-template-columns: 1fr; } }
+@media(min-width:1200px){ .stadiums-layout { grid-template-columns: 1fr 1fr 1fr; } }
+
+.stadium-card {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.stadium-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+.stadium-hero {
+  height: 160px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4.5rem; position: relative;
+  overflow: hidden;
+}
+.stadium-capacity-badge {
+  position: absolute; top: 12px; right: 12px;
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  padding: .25rem .6rem;
+  border-radius: 20px;
+  font-size: .7rem; font-weight: 700;
+  backdrop-filter: blur(6px);
+}
+.stadium-body { padding: 1.25rem 1.4rem; }
+.stadium-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem; font-weight: 700;
+  margin-bottom: .3rem;
+}
+.stadium-city {
+  font-size: .8rem; color: var(--text3);
+  display: flex; align-items: center; gap: .3rem;
+  margin-bottom: .65rem;
+}
+.stadium-facts {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: .85rem;
+}
+.st-fact {
+  display: flex; flex-direction: column;
+  font-size: .75rem;
+}
+.st-fact strong { font-size: .88rem; color: var(--text); font-weight: 700; }
+.st-fact span { color: var(--text3); }
+.stadium-tags { display: flex; gap: .4rem; flex-wrap: wrap; }
+.stag {
+  padding: .22rem .6rem;
+  border-radius: 4px;
+  font-size: .68rem; font-weight: 700;
+  letter-spacing: .5px; text-transform: uppercase;
+  background: var(--bg3);
+  color: var(--text2);
+  border: 1px solid var(--border);
+}
+
+/* ════════════════════════════════════════════
+   HOTELS
+════════════════════════════════════════════ */
+#hotels { background: var(--bg); }
+
+.hotels-tabs {
+  display: flex; gap: .5rem; flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+}
+.htab {
+  padding: .65rem 1.2rem;
+  border: none; background: none;
+  font-size: .88rem; font-weight: 600;
+  color: var(--text3);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all var(--transition);
+}
+.htab.active, .htab:hover { color: var(--brand); border-bottom-color: var(--brand); }
+
+.hotels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.hotel-card {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex; flex-direction: column;
+}
+.hotel-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.hotel-img {
+  height: 180px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4rem; position: relative;
+}
+.hotel-tier {
+  position: absolute; top: 12px; left: 12px;
+  padding: .25rem .65rem;
+  border-radius: 20px;
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .5px; text-transform: uppercase;
+}
+.tier-luxury { background: rgba(240,165,0,0.9); color: #2a1c00; }
+.tier-mid { background: rgba(0,61,165,0.85); color: #fff; }
+.tier-budget { background: rgba(0,122,51,0.85); color: #fff; }
+.hotel-stars { position: absolute; bottom: 10px; right: 12px; font-size: 1rem; }
+.hotel-body { padding: 1.3rem 1.4rem; flex: 1; display: flex; flex-direction: column; }
+.hotel-name { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; margin-bottom: .3rem; }
+.hotel-location { font-size: .8rem; color: var(--text3); margin-bottom: .75rem; display: flex; align-items: center; gap: .3rem; }
+.hotel-perks { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+.perk {
+  padding: .22rem .6rem; border-radius: 4px;
+  font-size: .7rem; font-weight: 600;
+  background: var(--bg3); color: var(--text2);
+  border: 1px solid var(--border);
+}
+.hotel-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border);
+}
+.hotel-price { font-size: .82rem; color: var(--text3); }
+.hotel-price strong { font-size: 1.2rem; color: var(--text); font-weight: 700; }
+.hotel-price strong span { color: var(--green); }
+.btn-book {
+  padding: .55rem 1.2rem;
+  background: var(--brand2);
+  color: #fff; border: none;
+  border-radius: var(--radius-sm);
+  font-size: .82rem; font-weight: 700;
+  transition: all var(--transition);
+}
+.btn-book:hover { background: var(--brand); transform: translateY(-1px); }
+
+/* ════════════════════════════════════════════
+   TRAVEL TIPS / BLOG
+════════════════════════════════════════════ */
+#tips { background: var(--bg3); }
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+@media(max-width:900px){ .tips-grid { grid-template-columns: 1fr; } }
+
+.tip-featured {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+}
+.tip-featured-img {
+  height: 240px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 6rem;
+  position: relative;
+}
+.tip-category {
+  position: absolute; top: 14px; left: 14px;
+  padding: .3rem .75rem;
+  border-radius: 20px;
+  font-size: .7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  background: var(--brand); color: #fff;
+}
+.tip-featured-body { padding: 1.75rem 2rem; flex: 1; }
+.tip-date { font-size: .78rem; color: var(--text3); margin-bottom: .5rem; }
+.tip-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem; font-weight: 700;
+  line-height: 1.35; margin-bottom: .75rem;
+}
+.tip-excerpt { font-size: .92rem; color: var(--text2); line-height: 1.7; margin-bottom: 1.25rem; }
+.tip-author { display: flex; align-items: center; gap: .65rem; }
+.author-avatar { font-size: 1.6rem; }
+.author-info strong { display: block; font-size: .85rem; }
+.author-info span { font-size: .75rem; color: var(--text3); }
+
+.tips-sidebar { display: flex; flex-direction: column; gap: 1rem; }
+.tip-mini {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 1.2rem 1.4rem;
+  box-shadow: var(--shadow);
+  display: flex; gap: 1rem; align-items: flex-start;
+  cursor: pointer; transition: transform var(--transition), box-shadow var(--transition);
+}
+.tip-mini:hover { transform: translateX(4px); box-shadow: var(--shadow-lg); }
+.tip-mini-ico { font-size: 2rem; flex-shrink: 0; }
+.tip-mini-cat {
+  font-size: .68rem; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--brand);
+  margin-bottom: .25rem;
+}
+.tip-mini-title { font-size: .92rem; font-weight: 700; line-height: 1.4; color: var(--text); }
+.tip-mini-date { font-size: .75rem; color: var(--text3); margin-top: .25rem; }
+
+/* Quick tips section */
+.quick-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+.quick-tip {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+  text-align: center;
+}
+.quick-tip:hover { transform: translateY(-3px); }
+.qt-icon { font-size: 2.4rem; margin-bottom: .75rem; }
+.qt-title { font-size: .95rem; font-weight: 700; margin-bottom: .4rem; }
+.qt-text { font-size: .82rem; color: var(--text2); line-height: 1.6; }
+
+/* ════════════════════════════════════════════
+   MAP / VENUES SECTION
+════════════════════════════════════════════ */
+#venues { background: var(--bg); padding: 6rem clamp(1.5rem,5vw,5rem); }
+.venues-inner { max-width: 1400px; margin: 0 auto; }
+
+.venues-map-card {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+}
+@media(max-width:900px){ .venues-map-card { grid-template-columns: 1fr; } }
+
+.venues-map-visual {
+  background: linear-gradient(135deg, var(--brand2) 0%, #001f6b 100%);
+  min-height: 500px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; padding: 2rem;
+}
+.map-placeholder {
+  position: relative; z-index: 1;
+  text-align: center; color: white;
+}
+.map-placeholder .map-icon { font-size: 5rem; margin-bottom: 1rem; }
+.map-placeholder p { font-size: 1rem; opacity: .8; }
+.map-placeholder h3 { font-family: var(--font-display); font-size: 2rem; letter-spacing: 2px; margin-bottom: .5rem; }
+
+/* SVG map dots */
+.map-dot {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 4px rgba(240,165,0,0.3);
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+.map-dot:hover { transform: scale(1.4); }
+.map-dot::after {
+  content: attr(data-city);
+  position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: #fff; font-size: .68rem; font-weight: 700; letter-spacing: .5px;
+  white-space: nowrap; padding: .25rem .5rem;
+  border-radius: 4px; pointer-events: none;
+  opacity: 0; transition: opacity var(--transition);
+}
+.map-dot:hover::after { opacity: 1; }
+
+.venues-list { padding: 2rem; overflow-y: auto; max-height: 500px; }
+.venues-list h3 {
+  font-family: var(--font-serif); font-size: 1.2rem; margin-bottom: 1rem;
+  padding-bottom: .75rem; border-bottom: 1px solid var(--border);
+}
+.venue-row {
+  display: flex; align-items: center; gap: 1rem;
+  padding: .75rem 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer; transition: all var(--transition);
+}
+.venue-row:hover { padding-left: .5rem; }
+.venue-row:last-child { border-bottom: none; }
+.venue-flag { font-size: 1.3rem; flex-shrink: 0; }
+.venue-info strong { display: block; font-size: .88rem; font-weight: 700; }
+.venue-info span { font-size: .76rem; color: var(--text3); }
+.venue-cap {
+  margin-left: auto;
+  font-size: .75rem; font-weight: 700;
+  color: var(--text3);
+  white-space: nowrap;
+}
+
+/* ════════════════════════════════════════════
+   ESSENTIAL INFO STRIP
+════════════════════════════════════════════ */
+.info-strip {
+  background: var(--brand2);
+  padding: 3rem clamp(1.5rem,5vw,5rem);
+}
+.info-strip-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 2rem;
+}
+.info-item { text-align: center; }
+.info-icon { font-size: 2rem; margin-bottom: .5rem; }
+.info-title { font-size: .75rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.65); margin-bottom: .3rem; }
+.info-value { font-size: 1rem; font-weight: 700; color: #fff; }
+
+/* ════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════ */
+footer {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  padding: 4rem clamp(1.5rem,5vw,5rem) 2rem;
+}
+.footer-inner { max-width: 1400px; margin: 0 auto; }
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+@media(max-width:900px){ .footer-top { grid-template-columns: 1fr 1fr; } }
+@media(max-width:600px){ .footer-top { grid-template-columns: 1fr; } }
+
+.footer-brand .logo-text {
+  font-family: var(--font-display);
+  font-size: 1.8rem; letter-spacing: 1px;
+  margin-bottom: .75rem;
+}
+.footer-brand .logo-text span { color: var(--brand); }
+.footer-brand p { font-size: .88rem; color: var(--text2); line-height: 1.7; max-width: 280px; }
+.footer-social { display: flex; gap: .5rem; margin-top: 1rem; }
+.social-btn {
+  width: 36px; height: 36px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; transition: all var(--transition);
+}
+.social-btn:hover { border-color: var(--brand); color: var(--brand); }
+
+.footer-col h4 {
+  font-size: .82rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text3); margin-bottom: 1rem;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: .5rem; }
+.footer-links a {
+  font-size: .88rem; color: var(--text2);
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--brand); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+  font-size: .82rem; color: var(--text3);
+}
+
+/* ════════════════════════════════════════════
+   MODAL (city detail)
+════════════════════════════════════════════ */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 3000;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1rem;
+  opacity: 0; pointer-events: none;
+  transition: opacity var(--transition);
+}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--bg2);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  width: min(780px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: scale(.94) translateY(20px);
+  transition: transform var(--transition);
+}
+.modal-overlay.open .modal { transform: none; }
+.modal-header {
+  padding: 2rem 2.5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+}
+.modal-title-wrap {}
+.modal-flag { font-size: 2.5rem; margin-bottom: .5rem; }
+.modal-title { font-family: var(--font-serif); font-size: 2rem; font-weight: 900; }
+.modal-subtitle { font-size: .9rem; color: var(--text3); margin-top: .25rem; }
+.modal-close {
+  background: var(--bg3); border: 1px solid var(--border);
+  color: var(--text2); width: 36px; height: 36px;
+  border-radius: 50%; font-size: 1.1rem; flex-shrink: 0;
+  transition: all var(--transition);
+}
+.modal-close:hover { background: var(--brand); color: #fff; border-color: var(--brand); }
+.modal-body { padding: 2rem 2.5rem; }
+.modal-tabs {
+  display: flex; gap: .25rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}
+.modal-tab {
+  padding: .6rem 1.1rem;
+  border: none; background: none;
+  font-size: .85rem; font-weight: 600;
+  color: var(--text3);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all var(--transition);
+}
+.modal-tab.active { color: var(--brand); border-bottom-color: var(--brand); }
+.modal-panel { display: none; }
+.modal-panel.active { display: block; animation: fadeUp .3s both; }
+
+.modal-info-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-bottom: 1.5rem;
+}
+@media(max-width:600px){ .modal-info-grid { grid-template-columns: 1fr; } }
+.modal-info-card {
+  background: var(--bg3);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.2rem;
+}
+.mic-label { font-size: .72rem; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: .25rem; }
+.mic-value { font-size: 1rem; font-weight: 700; }
+.modal-desc { font-size: .92rem; color: var(--text2); line-height: 1.75; margin-bottom: 1.5rem; }
+.modal-attractions h4 { font-size: .82rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); margin-bottom: .75rem; }
+.attraction-list { list-style: none; }
+.attraction-list li {
+  display: flex; align-items: center; gap: .65rem;
+  padding: .55rem 0; border-bottom: 1px solid var(--border); font-size: .9rem;
+}
+.attraction-list li:last-child { border-bottom: none; }
+
+/* ════════════════════════════════════════════
+   TOAST NOTIFICATION
+════════════════════════════════════════════ */
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+  background: var(--text);
+  color: var(--bg);
+  padding: .85rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: .88rem; font-weight: 600;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all .4s cubic-bezier(.34,1.56,.64,1);
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════ */
+@media(max-width:768px) {
+  .nav-links { display: none; }
+  .menu-btn { display: flex; }
+  h1.hero-title { font-size: clamp(3rem, 12vw, 5rem); }
+  .section { padding: 4rem 1.25rem; }
+  .section-full { padding: 4rem 1.25rem; }
+  .modal-header, .modal-body { padding: 1.5rem; }
+  .modal-info-grid { grid-template-columns: 1fr; }
+  .tips-grid { grid-template-columns: 1fr; }
+  .venues-map-card { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .countdown-units { gap: 1rem; }
+  .cd-num { min-width: 72px; }
+  .cd-separator { display: none; }
+}
+
+/* ════════════════════════════════════════════
+   CITY BACKGROUND GRADIENTS
+════════════════════════════════════════════ */
+.city-img.nyc { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+.city-img.la  { background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%); }
+.city-img.dallas { background: linear-gradient(135deg, #136a8a 0%, #267871 100%); }
+.city-img.sf  { background: linear-gradient(135deg, #c62a88 0%, #e91e63 100%); }
+.city-img.miami { background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%); }
+.city-img.atlanta { background: linear-gradient(135deg, #093028 0%, #237a57 100%); }
+.city-img.seattle { background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%); }
+.city-img.boston { background: linear-gradient(135deg, #1d4350 0%, #a43931 100%); }
+.city-img.kc { background: linear-gradient(135deg, #4e0000 0%, #800000 100%); }
+.city-img.toronto { background: linear-gradient(135deg, #e52d27 0%, #b31217 100%); }
+.city-img.vancouver { background: linear-gradient(135deg, #005aa7 0%, #fffde4 50%, #005aa7 100%); }
+.city-img.mexico { background: linear-gradient(135deg, #00467f 0%, #a5cc82 100%); }
+.city-img.gdl { background: linear-gradient(135deg, #e44d26 0%, #f16529 100%); }
+
+.stadium-hero.s1 { background: linear-gradient(135deg, #1a1a2e, #e94057); }
+.stadium-hero.s2 { background: linear-gradient(135deg, #134e5e, #71b280); }
+.stadium-hero.s3 { background: linear-gradient(135deg, #373b44, #4286f4); }
+.stadium-hero.s4 { background: linear-gradient(135deg, #7f0000, #200122); }
+.stadium-hero.s5 { background: linear-gradient(135deg, #005aa7, #fffde4); }
+.stadium-hero.s6 { background: linear-gradient(135deg, #1a472a, #2d6a4f); }
+
+.hotel-img.h1 { background: linear-gradient(135deg, #c9b037, #8a7614); }
+.hotel-img.h2 { background: linear-gradient(135deg, #003973, #e5e5be); }
+.hotel-img.h3 { background: linear-gradient(135deg, #ee0979, #ff6a00); }
+.hotel-img.h4 { background: linear-gradient(135deg, #134e5e, #71b280); }
+.hotel-img.h5 { background: linear-gradient(135deg, #373b44, #4286f4); }
+.hotel-img.h6 { background: linear-gradient(135deg, #200122, #6f0000); }
+
+.tip-featured-img.t1 { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); }
+.tip-mini-ico.tm1 { background: linear-gradient(135deg, #c94b4b, #4b134f); }
+
+/* Number animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════ NAVIGATION ════════ -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="nav-logo-ball">⚽</span>
+    WC<span>2026</span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#cities">Cities</a></li>
+    <li><a href="#stadiums">Stadiums</a></li>
+    <li><a href="#hotels">Hotels</a></li>
+    <li><a href="#tips">Travel Tips</a></li>
+    <li><a href="#venues">Map</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <button class="search-toggle-btn" id="searchToggle" title="Search" aria-label="Open search">🔍</button>
+    <button class="dark-toggle-btn" id="darkToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+    <button class="menu-btn" id="menuToggle" aria-label="Menu">☰</button>
+  </div>
+</nav>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <ul class="mobile-nav-links">
+    <li><a href="#hero" onclick="closeMobileNav()">🏠 Home</a></li>
+    <li><a href="#cities" onclick="closeMobileNav()">🏙️ Host Cities</a></li>
+    <li><a href="#stadiums" onclick="closeMobileNav()">🏟️ Stadiums</a></li>
+    <li><a href="#hotels" onclick="closeMobileNav()">🏨 Hotels</a></li>
+    <li><a href="#tips" onclick="closeMobileNav()">✈️ Travel Tips</a></li>
+    <li><a href="#venues" onclick="closeMobileNav()">🗺️ Map</a></li>
+  </ul>
+</div>
+
+<!-- Search overlay -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="Search cities, stadiums, hotels…" autocomplete="off"/>
+      <button class="search-close-btn" id="searchClose">✕</button>
+    </div>
+    <div class="search-results" id="searchResults">
+      <div class="search-empty">Start typing to search cities, stadiums and hotels…</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ HERO ════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pitch" id="heroPitch"></div>
+  <div class="hero-flag-strip"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">🌍 FIFA World Cup 2026</div>
+    <h1 class="hero-title">
+      THE<br>
+      <span class="red">WORLD'S</span><br>
+      <span class="blue">GAME</span>
+    </h1>
+    <p class="hero-sub">
+      Your ultimate travel guide to FIFA World Cup 2026 — spanning the USA, Canada and Mexico. 
+      Discover 16 host cities, 16 iconic stadiums, and everything you need for the journey of a lifetime.
+    </p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="scrollTo('cities')">🏙️ Explore Cities</button>
+      <button class="btn-secondary" onclick="scrollTo('stadiums')">🏟️ View Stadiums</button>
+    </div>
+    <div class="hero-flags">
+      Hosting nations: <span title="USA">🇺🇸</span><span title="Canada">🇨🇦</span><span title="Mexico">🇲🇽</span>
+      &nbsp;· 16 cities · 48 teams · 104 matches
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-ball">⚽</div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <span class="scroll-arrow">↓</span>
+  </div>
+</section>
+
+<!-- ════════ COUNTDOWN ════════ -->
+<div id="countdown">
+  <div class="countdown-inner">
+    <div class="countdown-label">
+      <strong>Kick-off</strong><br>
+      June 11, 2026 · MetLife Stadium, New York
+    </div>
+    <div class="countdown-units">
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-days">000</span>
+        <span class="cd-lbl">Days</span>
+      </div>
+      <div class="cd-separator">:</div>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-hours">00</span>
+        <span class="cd-lbl">Hours</span>
+      </div>
+      <div class="cd-separator">:</div>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-mins">00</span>
+        <span class="cd-lbl">Minutes</span>
+      </div>
+      <div class="cd-separator">:</div>
+      <div class="cd-unit">
+        <span class="cd-num" id="cd-secs">00</span>
+        <span class="cd-lbl">Seconds</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ HOST CITIES ════════ -->
+<section id="cities">
+  <div class="section">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Host Cities</div>
+      <h2 class="section-title">16 Cities Across<br>Three Nations</h2>
+      <p class="section-desc">From the skyscrapers of New York to the beaches of Miami and the altitude of Mexico City — every host city offers a unique World Cup experience.</p>
+    </div>
+    <div class="cities-grid" id="citiesGrid"></div>
+  </div>
+</section>
+
+<!-- ════════ STADIUMS ════════ -->
+<section id="stadiums" style="background: var(--bg3); padding: 0;">
+  <div class="section">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Venues</div>
+      <h2 class="section-title">World-Class Stadiums</h2>
+      <p class="section-desc">From NFL cathedrals repurposed for the beautiful game to purpose-built soccer arenas — explore every World Cup 2026 venue.</p>
+    </div>
+    <div class="stadiums-layout" id="stadiumsGrid"></div>
+  </div>
+</section>
+
+<!-- ════════ INFO STRIP ════════ -->
+<div class="info-strip">
+  <div class="info-strip-inner">
+    <div class="info-item reveal">
+      <div class="info-icon">🌍</div>
+      <div class="info-title">Countries</div>
+      <div class="info-value">3 Host Nations</div>
+    </div>
+    <div class="info-item reveal">
+      <div class="info-icon">🏙️</div>
+      <div class="info-title">Host Cities</div>
+      <div class="info-value">16 Cities</div>
+    </div>
+    <div class="info-item reveal">
+      <div class="info-icon">🏟️</div>
+      <div class="info-title">Stadiums</div>
+      <div class="info-value">16 Venues</div>
+    </div>
+    <div class="info-item reveal">
+      <div class="info-icon">⚽</div>
+      <div class="info-title">Teams</div>
+      <div class="info-value">48 Nations</div>
+    </div>
+    <div class="info-item reveal">
+      <div class="info-icon">🎟️</div>
+      <div class="info-title">Matches</div>
+      <div class="info-value">104 Games</div>
+    </div>
+    <div class="info-item reveal">
+      <div class="info-icon">👥</div>
+      <div class="info-title">Expected Fans</div>
+      <div class="info-value">5 Million+</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ HOTELS ════════ -->
+<section id="hotels">
+  <div class="section">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Accommodation</div>
+      <h2 class="section-title">Where to Stay</h2>
+      <p class="section-desc">Handpicked hotels across every host city — from luxury towers to smart budget picks, all close to match venues.</p>
+    </div>
+
+    <div class="hotels-tabs reveal" id="hotelTabs">
+      <button class="htab active" data-city="all">All Cities</button>
+      <button class="htab" data-city="new-york">New York</button>
+      <button class="htab" data-city="los-angeles">Los Angeles</button>
+      <button class="htab" data-city="dallas">Dallas</button>
+      <button class="htab" data-city="miami">Miami</button>
+      <button class="htab" data-city="toronto">Toronto</button>
+      <button class="htab" data-city="mexico-city">Mexico City</button>
+    </div>
+
+    <div class="hotels-grid" id="hotelsGrid"></div>
+  </div>
+</section>
+
+<!-- ════════ MAP / VENUES ════════ -->
+<section id="venues">
+  <div class="venues-inner">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Interactive Guide</div>
+      <h2 class="section-title">Venue Overview</h2>
+      <p class="section-desc">All 16 host venues across the three nations.</p>
+    </div>
+    <div class="venues-map-card reveal">
+      <div class="venues-map-visual" id="venueMap">
+        <div class="map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <h3>NORTH AMERICA 2026</h3>
+          <p>16 host venues · 3 countries</p>
+        </div>
+        <!-- Map dots positioned as approximate lat/long on a stylized layout -->
+        <div class="map-dot" style="top:28%;left:72%" data-city="New York"></div>
+        <div class="map-dot" style="top:26%;left:68%" data-city="Boston"></div>
+        <div class="map-dot" style="top:75%;left:30%" data-city="Los Angeles"></div>
+        <div class="map-dot" style="top:55%;left:45%" data-city="Dallas"></div>
+        <div class="map-dot" style="top:62%;left:70%" data-city="Miami"></div>
+        <div class="map-dot" style="top:55%;left:58%" data-city="Atlanta"></div>
+        <div class="map-dot" style="top:20%;left:25%" data-city="Vancouver"></div>
+        <div class="map-dot" style="top:22%;left:60%" data-city="Toronto"></div>
+        <div class="map-dot" style="top:48%;left:42%" data-city="Kansas City"></div>
+        <div class="map-dot" style="top:20%;left:30%" data-city="Seattle"></div>
+        <div class="map-dot" style="top:40%;left:28%" data-city="San Francisco"></div>
+        <div class="map-dot" style="top:82%;left:55%" data-city="Mexico City"></div>
+        <div class="map-dot" style="top:85%;left:42%" data-city="Guadalajara"></div>
+        <div class="map-dot" style="top:80%;left:48%" data-city="Monterrey"></div>
+      </div>
+      <div class="venues-list" id="venuesList">
+        <h3>All Host Venues</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ TRAVEL TIPS ════════ -->
+<section id="tips" style="background: var(--bg3); padding: 0;">
+  <div class="section">
+    <div class="section-head reveal">
+      <div class="section-eyebrow">Travel Blog</div>
+      <h2 class="section-title">Expert Travel Tips</h2>
+      <p class="section-desc">Everything you need to know before you go — visas, transport, food, culture and more.</p>
+    </div>
+
+    <div class="tips-grid reveal">
+      <div class="tip-featured">
+        <div class="tip-featured-img t1">
+          <span>✈️</span>
+          <div class="tip-category">Essential Guide</div>
+        </div>
+        <div class="tip-featured-body">
+          <div class="tip-date">📅 Updated January 2026</div>
+          <h3 class="tip-title">The Complete World Cup 2026 Visa & Entry Guide</h3>
+          <p class="tip-excerpt">
+            Planning to attend the tournament? Here's everything you need to know about entry requirements for the USA, Canada and Mexico — including the special Fan ID system, ESTA requirements for international visitors, and how to navigate cross-border travel between host nations.
+          </p>
+          <div class="tip-author">
+            <span class="author-avatar">👨‍✈️</span>
+            <div class="author-info">
+              <strong>James Rodriguez</strong>
+              <span>World Cup Travel Correspondent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tips-sidebar" id="tipsSidebar"></div>
+    </div>
+
+    <div class="quick-tips-grid" id="quickTipsGrid"></div>
+  </div>
+</section>
+
+<!-- ════════ FOOTER ════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo-text">WC<span>2026</span> Guide</div>
+        <p>Your independent travel companion for FIFA World Cup 2026. Not affiliated with FIFA, the USSF, Canada Soccer or the FMF.</p>
+        <div class="footer-social">
+          <a class="social-btn" title="Twitter">𝕏</a>
+          <a class="social-btn" title="Instagram">📸</a>
+          <a class="social-btn" title="Facebook">ƒ</a>
+          <a class="social-btn" title="YouTube">▶</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Destinations</h4>
+        <ul class="footer-links">
+          <li><a href="#cities">Host Cities</a></li>
+          <li><a href="#stadiums">Stadiums</a></li>
+          <li><a href="#venues">Venue Map</a></li>
+          <li><a href="#hotels">Hotels</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Travel Info</h4>
+        <ul class="footer-links">
+          <li><a href="#tips">Travel Tips</a></li>
+          <li><a href="#tips">Visa Guide</a></li>
+          <li><a href="#tips">Transport</a></li>
+          <li><a href="#tips">Food & Culture</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul class="footer-links">
+          <li><a href="https://www.fifa.com" target="_blank">FIFA Official</a></li>
+          <li><a href="#tips">Match Schedule</a></li>
+          <li><a href="#tips">Ticket Info</a></li>
+          <li><a href="#tips">Fan Zones</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 WC2026 Travel Guide — Independent fan resource</span>
+      <span>🇺🇸 USA · 🇨🇦 Canada · 🇲🇽 Mexico</span>
+    </div>
+  </div>
+</footer>
+
+<!-- City detail modal -->
+<div class="modal-overlay" id="cityModal">
+  <div class="modal" id="cityModalContent">
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <div class="modal-flag" id="modalFlag"></div>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" onclick="switchTab('overview')">Overview</button>
+        <button class="modal-tab" onclick="switchTab('stadium')">Stadium</button>
+        <button class="modal-tab" onclick="switchTab('hotels')">Hotels</button>
+        <button class="modal-tab" onclick="switchTab('tips')">Tips</button>
+      </div>
+      <div class="modal-panel active" id="panel-overview"></div>
+      <div class="modal-panel" id="panel-stadium"></div>
+      <div class="modal-panel" id="panel-hotels"></div>
+      <div class="modal-panel" id="panel-tips"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+/* ════════════════════════════════════════════
+   DATA
+════════════════════════════════════════════ */
+const CITIES = [
+  {
+    id: 'new-york', name: 'New York / New Jersey', flag: '🇺🇸', country: 'USA', badge: 'badge-usa',
+    emoji: '🗽', imgClass: 'nyc',
+    timezone: 'EST (UTC-5)', population: '20M+', climate: 'Humid continental',
+    matches: 8, finalHost: true,
+    desc: 'The greatest city on Earth hosts the World Cup Final. MetLife Stadium in East Rutherford will be the stage for the ultimate showpiece.',
+    stadium: 'MetLife Stadium', stadiumCap: '82,500',
+    attractions: ['🗽 Statue of Liberty', '🏙️ Times Square', '🎭 Broadway', '🌳 Central Park', '🌉 Brooklyn Bridge'],
+    transport: 'Excellent subway system. NJ Transit to MetLife. Taxis and rideshare widely available.',
+    hotels: ['The Plaza Hotel', 'Marriott Marquis Times Square', 'Pod 51 Hotel'],
+    travelTip: 'Book accommodation 12+ months in advance. The Final will see enormous demand.',
+    bestArea: 'Midtown Manhattan or Jersey City for stadium proximity'
+  },
+  {
+    id: 'los-angeles', name: 'Los Angeles', flag: '🇺🇸', country: 'USA', badge: 'badge-usa',
+    emoji: '🌴', imgClass: 'la',
+    timezone: 'PST (UTC-8)', population: '4M+', climate: 'Mediterranean',
+    matches: 7, finalHost: false,
+    desc: 'Hollywood glamour meets world football. The Rose Bowl and SoFi Stadium bring the beautiful game to the City of Angels.',
+    stadium: 'SoFi Stadium / Rose Bowl', stadiumCap: '70,000 / 88,565',
+    attractions: ['🎬 Hollywood Walk of Fame', '🎡 Santa Monica Pier', '🏛️ Getty Museum', '🌊 Venice Beach'],
+    transport: 'Car-friendly city. Metro rail expanding. Uber/Lyft essential.',
+    hotels: ['Beverly Wilshire', 'Hotel Indigo Downtown', 'Freehand Los Angeles'],
+    travelTip: 'LA traffic is legendary. Use Metro or book hotels near the venue.',
+    bestArea: 'Downtown LA or Inglewood for SoFi; Pasadena for Rose Bowl'
+  },
+  {
+    id: 'dallas', name: 'Dallas / Fort Worth', flag: '🇺🇸', country: 'USA', badge: 'badge-usa',
+    emoji: '🤠', imgClass: 'dallas',
+    timezone: 'CST (UTC-6)', population: '7M+', climate: 'Humid subtropical',
+    matches: 6, finalHost: false,
+    desc: 'Texas-sized passion for football. AT&T Stadium — home of the Cowboys — transforms into a World Cup cathedral in the summer heat.',
+    stadium: 'AT&T Stadium', stadiumCap: '80,000',
+    attractions: ['🤠 Stockyards National Historic District', '🎨 Dallas Museum of Art', '🏛️ Sixth Floor Museum'],
+    transport: 'DART light rail, rental cars. Uber/Lyft recommended.',
+    hotels: ['Omni Dallas Hotel', 'Lorenzo Hotel', 'Hilton Garden Inn Arlington'],
+    travelTip: 'June/July temperatures exceed 38°C. Stay hydrated and plan indoor activities.',
+    bestArea: 'Downtown Dallas or Arlington near AT&T Stadium'
+  },
+  {
+    id: 'miami', name: 'Miami', flag: '🇺🇸', country: 'USA', badge: 'badge-usa',
+    emoji: '🌊', imgClass: 'miami',
+    timezone: 'EST (UTC-5)', population: '6M+', climate: 'Tropical monsoon',
+    matches: 6, finalHost: false,
+    desc: 'Sizzling heat, Latin rhythm and world-class football. Hard Rock Stadium hosts matches in one of the most vibrant cities in the Americas.',
+    stadium: 'Hard Rock Stadium', stadiumCap: '65,326',
+    attractions: ['🏖️ South Beach', '🎨 Wynwood Walls', '🐊 Everglades', '🛳️ Port of Miami'],
+    transport: 'Metrorail, bus, Brightline rail, Uber/Lyft.',
+    hotels: ['Faena Hotel Miami Beach', 'EAST Miami', 'Circa 39 Hotel South Beach'],
+    travelTip: 'Humidity is extreme in summer. Plan outdoor activities for morning or evening.',
+    bestArea: 'South Beach for atmosphere; Brickell for business district convenience'
+  },
+  {
+    id: 'atlanta', name: 'Atlanta', flag: '🇺🇸', country: 'USA', badge: 'badge-usa',
+    emoji: '🍑', imgClass: 'atlanta',
+    timezone: 'EST (UTC-5)', population: '6M+', climate: 'Humid subtropical',
+    matches: 6, finalHost: false,
+    desc: 'The home of Coca-Cola and CNN becomes a World Cup city. Mercedes-Benz Stadium is widely considered the finest in the USA.',
+    stadium: 'Mercedes-Benz Stadium', stadiumCap: '71,000',
+    attractions: ['🐟 Georgia Aquarium', '🌊 World of Coca-Cola', '✊ MLK National Historic Site'],
+    transport: 'MARTA rail system directly to the stadium.',
+    hotels: ['Omni Atlanta Hotel', 'Glenn Hotel Autograph Collection', 'Pod Atlanta'],
+    travelTip: 'The Beltline is a great way to explore the city on foot or by bike.',
+    bestArea: 'Downtown or Midtown for stadium proximity'
+  },
+  {
+    id: 'seattle', name: 'Seattle', flag: '🇺🇸', country: 'USA', badge: 'badge-usa',
+    emoji: '🌲', imgClass: 'seattle',
+    timezone: 'PST (UTC-8)', population: '4M+', climate: 'Oceanic',
+    matches: 5, finalHost: false,
+    desc: 'Lumen Field — home of the Sounders — provides a genuine soccer atmosphere under the Pacific Northwest skies.',
+    stadium: 'Lumen Field', stadiumCap: '68,740',
+    attractions: ['🚡 Space Needle', '🐟 Pike Place Market', '🎸 Museum of Pop Culture'],
+    transport: 'Link Light Rail directly to stadium. Very walkable downtown.',
+    hotels: ['Hyatt Regency Seattle', 'Hotel Theodore', 'City Hostel Seattle'],
+    travelTip: 'Pack a rain jacket regardless of forecast. Weather changes quickly.',
+    bestArea: 'South Lake Union or Capitol Hill'
+  },
+  {
+    id: 'boston', name: 'Boston', flag: '🇺🇸', country: 'USA', badge: 'badge-usa',
+    emoji: '🦞', imgClass: 'boston',
+    timezone: 'EST (UTC-5)', population: '5M+', climate: 'Humid continental',
+    matches: 5, finalHost: false,
+    desc: 'New England\'s passion for sport extends to the World Cup. Gillette Stadium, home of the Patriots, gets a football makeover.',
+    stadium: 'Gillette Stadium', stadiumCap: '65,878',
+    attractions: ['🏛️ Freedom Trail', '⚾ Fenway Park', '🎓 Harvard University', '🦞 Quincy Market'],
+    transport: 'Commuter rail to Gillette. MBTA subway in the city.',
+    hotels: ['Fairmont Copley Plaza', 'Envoy Hotel', 'HI Boston Hostel'],
+    travelTip: 'Boston is very walkable. The Freedom Trail takes you past 16 historic sites.',
+    bestArea: 'Back Bay or Fenway neighborhood'
+  },
+  {
+    id: 'kansas-city', name: 'Kansas City', flag: '🇺🇸', country: 'USA', badge: 'badge-usa',
+    emoji: '🎷', imgClass: 'kc',
+    timezone: 'CST (UTC-6)', population: '2.2M+', climate: 'Humid continental',
+    matches: 5, finalHost: false,
+    desc: 'BBQ capital of the world joins the World Cup stage. Arrowhead Stadium brings Chiefs energy to the beautiful game.',
+    stadium: 'Arrowhead Stadium', stadiumCap: '76,416',
+    attractions: ['🎷 18th & Vine Jazz District', '🥩 Joe\'s Kansas City BBQ', '🎡 Worlds of Fun'],
+    transport: 'KC Streetcar downtown. Cars/rideshare needed for the stadium.',
+    hotels: ['Hotel Kansas City Autograph', 'The Crossroads Hotel', 'Westin Kansas City'],
+    travelTip: 'KC BBQ is legendary — plan a food tour. Don\'t miss the ribs.',
+    bestArea: 'Power & Light District or Crossroads Arts District'
+  },
+  {
+    id: 'san-francisco', name: 'San Francisco / Bay Area', flag: '🇺🇸', country: 'USA', badge: 'badge-usa',
+    emoji: '🌉', imgClass: 'sf',
+    timezone: 'PST (UTC-8)', population: '7M+', climate: 'Mediterranean',
+    matches: 6, finalHost: false,
+    desc: 'Silicon Valley meets soccer. Levi\'s Stadium in Santa Clara is a modern masterpiece with Golden Gate views nearby.',
+    stadium: "Levi's Stadium", stadiumCap: '68,500',
+    attractions: ["🌉 Golden Gate Bridge", '🦭 Fisherman\'s Wharf', '🏛️ Alcatraz Island', '🌿 Muir Woods'],
+    transport: 'BART to San Jose then VTA. Caltrain from SF to Santa Clara.',
+    hotels: ['The Ritz-Carlton SF', 'Hotel Zephyr Fisherman\'s Wharf', 'Green Tortoise Hostel'],
+    travelTip: 'SF summers are cold and foggy. Bring layers even in June.',
+    bestArea: 'Union Square SF or Downtown San Jose for the stadium'
+  },
+  {
+    id: 'toronto', name: 'Toronto', flag: '🇨🇦', country: 'Canada', badge: 'badge-can',
+    emoji: '🍁', imgClass: 'toronto',
+    timezone: 'EST (UTC-5)', population: '6M+', climate: 'Humid continental',
+    matches: 6, finalHost: false,
+    desc: 'Canada\'s largest city makes its World Cup debut. BMO Field gets a major expansion to welcome the world.',
+    stadium: 'BMO Field', stadiumCap: '45,000 (expanded)',
+    attractions: ['🗼 CN Tower', '🏔️ Niagara Falls (90min)', '🏙️ Kensington Market', '🎨 AGO'],
+    transport: 'TTC subway and streetcar. Union Station is the transport hub.',
+    hotels: ['Fairmont Royal York', 'Hotel X Toronto', 'HI Toronto Hostel'],
+    travelTip: 'Toronto is incredibly diverse — explore different neighborhoods for global cuisine.',
+    bestArea: 'Entertainment District or Harbourfront'
+  },
+  {
+    id: 'vancouver', name: 'Vancouver', flag: '🇨🇦', country: 'Canada', badge: 'badge-can',
+    emoji: '🏔️', imgClass: 'vancouver',
+    timezone: 'PST (UTC-8)', population: '2.5M+', climate: 'Oceanic',
+    matches: 6, finalHost: false,
+    desc: 'Canada\'s most beautiful city sets a stunning backdrop with mountains and ocean. BC Place retractable roof handles all weather.',
+    stadium: 'BC Place', stadiumCap: '54,500',
+    attractions: ['🌿 Stanley Park', '🎨 Granville Island', '🏔️ Whistler (2hr)', '🌊 Capilano Suspension Bridge'],
+    transport: 'SkyTrain to BC Place. Excellent public transit throughout.',
+    hotels: ['Fairmont Pacific Rim', 'Opus Vancouver', 'YWCA Hotel Vancouver'],
+    travelTip: 'Vancouver is one of the most expensive cities in North America. Book early.',
+    bestArea: 'Downtown or Yaletown for stadium proximity'
+  },
+  {
+    id: 'mexico-city', name: 'Mexico City', flag: '🇲🇽', country: 'Mexico', badge: 'badge-mex',
+    emoji: '🌮', imgClass: 'mexico',
+    timezone: 'CST (UTC-6)', population: '22M+', climate: 'Subtropical highland',
+    matches: 7, finalHost: false,
+    desc: 'Mexico City has hosted two World Cup finals (1970, 1986). The legendary Estadio Azteca returns for a historic third tournament.',
+    stadium: 'Estadio Azteca', stadiumCap: '87,000',
+    attractions: ['🏛️ Teotihuacan Pyramids', '🎨 Frida Kahlo Museum', '⚽ Estadio Azteca', '🌮 Mercado de la Merced'],
+    transport: 'Metro system is cheap and extensive. Uber widely available.',
+    hotels: ['Four Seasons Mexico City', 'Camino Real Polanco', 'Chaya B&B Condesa'],
+    travelTip: 'Altitude is 2,240m — acclimatise for 2-3 days before heavy activity. Drink bottled water.',
+    bestArea: 'Polanco or Condesa for safety and restaurants'
+  },
+  {
+    id: 'guadalajara', name: 'Guadalajara', flag: '🇲🇽', country: 'Mexico', badge: 'badge-mex',
+    emoji: '🎺', imgClass: 'gdl',
+    timezone: 'CST (UTC-6)', population: '5M+', climate: 'Subtropical highland',
+    matches: 5, finalHost: false,
+    desc: 'The birthplace of mariachi and tequila. Estadio Akron, home of Chivas, is one of Latin America\'s finest stadiums.',
+    stadium: 'Estadio Akron', stadiumCap: '49,850',
+    attractions: ['🎺 Mariachi Plaza', '🥃 Tequila town (1hr)', '🌺 Hospicio Cabañas', '💙 Zapopan Basilica'],
+    transport: 'Tren Ligero light rail, Macrobús BRT, taxis.',
+    hotels: ['Hotel Guadalajara Plaza López Mateos', 'Demetria Hotel', 'Hostel Hospedarte Chapultepec'],
+    travelTip: 'Try authentic birria tacos — it originated in Jalisco state.',
+    bestArea: 'Centro Histórico or Zapopan'
+  },
+  {
+    id: 'monterrey', name: 'Monterrey', flag: '🇲🇽', country: 'Mexico', badge: 'badge-mex',
+    emoji: '⛰️', imgClass: 'gdl',
+    timezone: 'CST (UTC-6)', population: '5M+', climate: 'Semi-arid',
+    matches: 5, finalHost: false,
+    desc: 'Mexico\'s industrial capital backed by the Sierra Madre mountains. BBVA Stadium is considered Mexico\'s finest football venue.',
+    stadium: 'BBVA Stadium', stadiumCap: '53,500',
+    attractions: ['⛰️ Cerro de la Silla', '🏛️ Macroplaza', '🍺 Barrio Antiguo', '🏔️ Cañón de la Huasteca'],
+    transport: 'Metro system, taxis, Uber.',
+    hotels: ['Safi Royal Luxury Valle', 'NH Collection Monterrey', 'Galeria Plaza Monterrey'],
+    travelTip: 'Summer heat is extreme (+40°C). Limit outdoor time midday.',
+    bestArea: 'San Pedro Garza García or Centro Histórico'
+  }
+];
+
+const HOTELS_DATA = [
+  { id: 1, name: 'The Plaza Hotel', city: 'new-york', cityName: 'New York', tier: 'luxury', tierLabel: 'Luxury', emoji: '🏰', imgClass: 'h1', price: 895, stars: '⭐⭐⭐⭐⭐', perks: ['🏊 Pool', '🍽️ Restaurant', '🛎️ Concierge', '🚗 Valet', '💆 Spa'], dist: '0.5km to Central Park, 45min to MetLife' },
+  { id: 2, name: 'Marriott Marquis Times Square', city: 'new-york', cityName: 'New York', tier: 'mid', tierLabel: 'Mid-range', emoji: '🏨', imgClass: 'h2', price: 420, stars: '⭐⭐⭐⭐', perks: ['🏋️ Gym', '🍽️ Restaurant', '📶 Free WiFi', '🎭 Times Sq location'], dist: '40min by transit to MetLife Stadium' },
+  { id: 3, name: 'SoFi Stadium Marriott', city: 'los-angeles', cityName: 'Los Angeles', tier: 'mid', tierLabel: 'Mid-range', emoji: '🏨', imgClass: 'h3', price: 380, stars: '⭐⭐⭐⭐', perks: ['🏋️ Gym', '🚗 Parking', '📶 WiFi', '🎬 LA Access'], dist: '5 min walk to SoFi Stadium' },
+  { id: 4, name: 'Omni Dallas Hotel', city: 'dallas', cityName: 'Dallas', tier: 'mid', tierLabel: 'Mid-range', emoji: '🏨', imgClass: 'h4', price: 290, stars: '⭐⭐⭐⭐', perks: ['🏊 Rooftop Pool', '🍽️ Restaurant', '🏋️ Gym', '📶 WiFi'], dist: 'Connected to Dallas Convention Center, 20min to AT&T' },
+  { id: 5, name: 'Faena Hotel Miami Beach', city: 'miami', cityName: 'Miami', tier: 'luxury', tierLabel: 'Luxury', emoji: '🌴', imgClass: 'h5', price: 1200, stars: '⭐⭐⭐⭐⭐', perks: ['🏖️ Beach Access', '🍽️ World-class dining', '💆 Spa', '🎭 Art collection', '🏊 Pool'], dist: 'South Beach · 20min to Hard Rock Stadium' },
+  { id: 6, name: 'Fairmont Royal York', city: 'toronto', cityName: 'Toronto', tier: 'luxury', tierLabel: 'Luxury', emoji: '🏰', imgClass: 'h1', price: 560, stars: '⭐⭐⭐⭐⭐', perks: ['🍽️ 3 Restaurants', '💆 Spa', '🏋️ Gym', '🚉 Next to Union Station'], dist: 'Union Station · 20min to BMO Field' },
+  { id: 7, name: 'Four Seasons Mexico City', city: 'mexico-city', cityName: 'Mexico City', tier: 'luxury', tierLabel: 'Luxury', emoji: '🏰', imgClass: 'h6', price: 480, stars: '⭐⭐⭐⭐⭐', perks: ['🌿 Garden courtyard', '🍽️ Gourmet restaurant', '💆 Spa', '🏋️ Gym'], dist: 'Reforma · 30min to Estadio Azteca' },
+  { id: 8, name: 'Circa 39 Hotel', city: 'miami', cityName: 'Miami', tier: 'budget', tierLabel: 'Budget', emoji: '🏨', imgClass: 'h2', price: 120, stars: '⭐⭐⭐', perks: ['🏖️ Near Beach', '🏊 Pool', '📶 WiFi', '🚌 Bus stop'], dist: '10min walk to South Beach' },
+  { id: 9, name: 'Pod 51 Hotel', city: 'new-york', cityName: 'New York', tier: 'budget', tierLabel: 'Budget', emoji: '🏨', imgClass: 'h3', price: 130, stars: '⭐⭐⭐', perks: ['📶 Free WiFi', '🌆 City views', '☕ Café', '🚇 Subway access'], dist: 'Midtown Manhattan · 40min to MetLife' },
+  { id: 10, name: 'The Crossroads Hotel', city: 'kansas-city', cityName: 'Kansas City', tier: 'mid', tierLabel: 'Mid-range', emoji: '🎷', imgClass: 'h4', price: 185, stars: '⭐⭐⭐⭐', perks: ['🎨 Art District', '🍻 Bar', '🏋️ Gym', '📶 WiFi'], dist: 'Arts District · 15min to Arrowhead' },
+  { id: 11, name: 'Fairmont Pacific Rim', city: 'vancouver', cityName: 'Vancouver', tier: 'luxury', tierLabel: 'Luxury', emoji: '🏔️', imgClass: 'h5', price: 650, stars: '⭐⭐⭐⭐⭐', perks: ['🏔️ Mountain views', '💆 Spa', '🍽️ Award-winning dining', '🚇 SkyTrain nearby'], dist: 'Coal Harbour · 10min walk to BC Place' },
+  { id: 12, name: 'Hotel Guadalajara Plaza', city: 'guadalajara', cityName: 'Guadalajara', tier: 'mid', tierLabel: 'Mid-range', emoji: '🎺', imgClass: 'h6', price: 110, stars: '⭐⭐⭐⭐', perks: ['🏊 Pool', '🍽️ Restaurant', '🎺 Mariachi nearby', '📶 WiFi'], dist: '20min to Estadio Akron' },
+];
+
+const STADIUMS_DATA = [
+  { name: 'MetLife Stadium', city: 'East Rutherford, NJ', capacity: '82,500', emoji: '🏟️', imgClass: 's1', surface: 'Grass (temp)', opened: '2010', notes: 'NFL venue. Hosting the Final.', tags: ['Final Venue', 'NFL', 'Largest'] },
+  { name: 'AT&T Stadium', city: 'Arlington, Texas', capacity: '80,000', emoji: '⭐', imgClass: 's2', surface: 'FieldTurf', opened: '2009', notes: 'Home of Dallas Cowboys. Iconic retractable roof.', tags: ['Retractable Roof', 'NFL', 'Texas'] },
+  { name: 'SoFi Stadium', city: 'Inglewood, California', capacity: '70,000', emoji: '🌟', imgClass: 's3', surface: 'Grass', opened: '2020', notes: 'Most expensive stadium ever built ($5.5 billion).', tags: ['Newest', 'NFL', 'LA'] },
+  { name: 'Mercedes-Benz Stadium', city: 'Atlanta, Georgia', capacity: '71,000', emoji: '💎', imgClass: 's4', surface: 'Grass', opened: '2017', notes: 'Pinwheel retractable roof. Voted best stadium in USA.', tags: ['Best Rated', 'NFL', 'MLS'] },
+  { name: 'Estadio Azteca', city: 'Mexico City, Mexico', capacity: '87,000', emoji: '🏛️', imgClass: 's5', surface: 'Grass', opened: '1966', notes: 'Only stadium to host two World Cup Finals (1970, 1986).', tags: ['Historic', 'World Cup', 'Iconic'] },
+  { name: 'Lumen Field', city: 'Seattle, Washington', capacity: '68,740', emoji: '💚', imgClass: 's6', surface: 'FieldTurf', opened: '2002', notes: 'Loudest stadium in the NFL. Home of Seattle Sounders.', tags: ['MLS', 'NFL', 'Soccer First'] },
+  { name: 'Rose Bowl', city: 'Pasadena, California', capacity: '88,565', emoji: '🌹', imgClass: 's1', surface: 'Grass', opened: '1922', notes: 'Iconic venue. Hosted 1994 World Cup Final.', tags: ['Historic', 'College', '1994 WC'] },
+  { name: 'Arrowhead Stadium', city: 'Kansas City, Missouri', capacity: '76,416', emoji: '🏹', imgClass: 's2', surface: 'Grass', opened: '1972', notes: 'Consistently rated loudest NFL stadium.', tags: ['Loudest', 'NFL', 'Chiefs'] },
+  { name: 'BC Place', city: 'Vancouver, Canada', capacity: '54,500', emoji: '🇨🇦', imgClass: 's3', surface: 'Polytan turf', opened: '1983', notes: 'First retractable air-supported roof in North America.', tags: ['Canada', 'Retractable Roof'] },
+  { name: 'BMO Field', city: 'Toronto, Canada', capacity: '45,000', emoji: '🍁', imgClass: 's4', surface: 'Grass', opened: '2007', notes: 'Being expanded to 45,000 for the World Cup.', tags: ['Canada', 'MLS', 'Expanded'] },
+  { name: 'Estadio Akron', city: 'Guadalajara, Mexico', capacity: '49,850', emoji: '🔵', imgClass: 's5', surface: 'Grass', opened: '2010', notes: 'Home of Club Deportivo Guadalajara (Chivas).', tags: ['Mexico', 'Modern', 'Liga MX'] },
+  { name: 'BBVA Stadium', city: 'Monterrey, Mexico', capacity: '53,500', emoji: '🏔️', imgClass: 's6', surface: 'Grass', opened: '2015', notes: 'Stunning mountain backdrop. Considered Mexico\'s finest.', tags: ['Mexico', 'Modern', 'Scenic'] },
+];
+
+const TIPS_SIDEBAR = [
+  { ico: '🛂', cat: 'Visas & Entry', title: 'ESTA, eTA and Mexico Tourist Visa: What You Need', date: 'Dec 2025' },
+  { ico: '✈️', cat: 'Flights', title: 'Best Time to Book Flights to World Cup Host Cities', date: 'Nov 2025' },
+  { ico: '🚆', cat: 'Transport', title: 'Cross-Border Travel: USA to Canada to Mexico by Train', date: 'Jan 2026' },
+  { ico: '💰', cat: 'Budget', title: 'How to Attend the World Cup on a Budget', date: 'Jan 2026' },
+];
+
+const QUICK_TIPS = [
+  { ico: '📱', title: 'Download Essential Apps', text: 'Google Maps offline, translation app, local transit apps, and the FIFA official app for your journey.' },
+  { ico: '💳', title: 'Payment & Currency', text: 'Credit cards widely accepted. Carry USD in Mexico and Canada. Avoid airport currency exchange.' },
+  { ico: '🌡️', title: 'Summer Weather', text: 'Expect heat and humidity in June/July across US cities. Hydrate constantly and carry sunscreen.' },
+  { ico: '🎟️', title: 'Ticket Advice', text: 'Only buy from FIFA official channels or authorised resellers. Beware of counterfeit tickets.' },
+  { ico: '🏥', title: 'Travel Insurance', text: 'Comprehensive travel insurance is essential. Medical costs in the USA can be very high without coverage.' },
+  { ico: '🍽️', title: 'Food & Culture', text: 'Each city has a distinct culinary identity — from NYC pizza to Dallas BBQ to Mexico City tacos.' },
+  { ico: '📵', title: 'Connectivity', text: 'Get an international SIM or eSIM with data plans covering all 3 countries before you arrive.' },
+  { ico: '🔒', title: 'Safety', text: 'Keep documents in hotel safes, use official taxis or rideshare, and stay aware in crowded areas.' },
+];
+
+/* ════════════════════════════════════════════
+   RENDER FUNCTIONS
+════════════════════════════════════════════ */
+function renderCities() {
+  const grid = document.getElementById('citiesGrid');
+  grid.innerHTML = CITIES.map((c, i) => `
+    <div class="city-card reveal" style="animation-delay:${i*0.05}s" onclick="openCityModal('${c.id}')">
+      <div class="city-img ${c.imgClass}">
+        <span>${c.emoji}</span>
+        <div class="city-flag">${c.flag}</div>
+        <div class="city-country-badge ${c.badge}">${c.country}</div>
+      </div>
+      <div class="city-body">
+        <div class="city-name">${c.name} ${c.finalHost ? '<span style="color:var(--gold);font-size:.75rem">★ Final Host</span>' : ''}</div>
+        <div class="city-meta">
+          <span>🏟️ ${c.matches} matches</span>
+          <span>🕐 ${c.timezone}</span>
+        </div>
+        <p class="city-desc">${c.desc}</p>
+        <span class="city-link">Explore city →</span>
+      </div>
+    </div>
+  `).join('');
+  initReveal();
+}
+
+function renderStadiums() {
+  const grid = document.getElementById('stadiumsGrid');
+  grid.innerHTML = STADIUMS_DATA.map((s, i) => `
+    <div class="stadium-card reveal" style="animation-delay:${i*0.06}s">
+      <div class="stadium-hero ${s.imgClass}">
+        <span>${s.emoji}</span>
+        <div class="stadium-capacity-badge">👥 ${s.capacity}</div>
+      </div>
+      <div class="stadium-body">
+        <div class="stadium-name">${s.name}</div>
+        <div class="stadium-city">📍 ${s.city}</div>
+        <div class="stadium-facts">
+          <div class="st-fact">
+            <strong>${s.capacity}</strong>
+            <span>Capacity</span>
+          </div>
+          <div class="st-fact">
+            <strong>${s.opened}</strong>
+            <span>Opened</span>
+          </div>
+          <div class="st-fact">
+            <strong>${s.surface}</strong>
+            <span>Surface</span>
+          </div>
+        </div>
+        <p style="font-size:.82rem;color:var(--text2);margin-bottom:.75rem">${s.notes}</p>
+        <div class="stadium-tags">${s.tags.map(t => `<span class="stag">${t}</span>`).join('')}</div>
+      </div>
+    </div>
+  `).join('');
+  initReveal();
+}
+
+function renderHotels(filter = 'all') {
+  const grid = document.getElementById('hotelsGrid');
+  const filtered = filter === 'all' ? HOTELS_DATA : HOTELS_DATA.filter(h => h.city === filter);
+  
+  if (!filtered.length) {
+    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text3)">No hotels found for this city yet.</div>';
+    return;
+  }
+  
+  const tierMap = { luxury: 'tier-luxury', mid: 'tier-mid', budget: 'tier-budget' };
+  grid.innerHTML = filtered.map((h, i) => `
+    <div class="hotel-card reveal" style="animation-delay:${i*0.07}s">
+      <div class="hotel-img ${h.imgClass}">
+        <span>${h.emoji}</span>
+        <div class="hotel-tier ${tierMap[h.tier]}">${h.tierLabel}</div>
+        <div class="hotel-stars">${h.stars}</div>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-name">${h.name}</div>
+        <div class="hotel-location">📍 ${h.cityName}</div>
+        <div class="hotel-perks">${h.perks.map(p=>`<span class="perk">${p}</span>`).join('')}</div>
+        <div style="font-size:.8rem;color:var(--text3);margin-bottom:.75rem">📏 ${h.dist}</div>
+        <div class="hotel-footer">
+          <div class="hotel-price">From <strong><span>$${h.price}</span></strong>/night</div>
+          <button class="btn-book" onclick="showToast('Opening booking for ${h.name}…')">Book Now</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  initReveal();
+}
+
+function renderVenuesList() {
+  const list = document.getElementById('venuesList');
+  const rows = CITIES.map(c => `
+    <div class="venue-row" onclick="openCityModal('${c.id}')">
+      <span class="venue-flag">${c.flag}</span>
+      <div class="venue-info">
+        <strong>${c.name}</strong>
+        <span>${c.stadium}</span>
+      </div>
+      <div class="venue-cap">🎟️ ${c.matches} games</div>
+    </div>
+  `).join('');
+  list.innerHTML = '<h3>All Host Venues</h3>' + rows;
+}
+
+function renderTipsSidebar() {
+  const sidebar = document.getElementById('tipsSidebar');
+  sidebar.innerHTML = TIPS_SIDEBAR.map(t => `
+    <div class="tip-mini reveal" onclick="showToast('Article coming soon!')">
+      <div class="tip-mini-ico">${t.ico}</div>
+      <div>
+        <div class="tip-mini-cat">${t.cat}</div>
+        <div class="tip-mini-title">${t.title}</div>
+        <div class="tip-mini-date">${t.date}</div>
+      </div>
+    </div>
+  `).join('');
+  initReveal();
+}
+
+function renderQuickTips() {
+  const grid = document.getElementById('quickTipsGrid');
+  grid.innerHTML = QUICK_TIPS.map((t, i) => `
+    <div class="quick-tip reveal" style="animation-delay:${i*0.06}s">
+      <div class="qt-icon">${t.ico}</div>
+      <div class="qt-title">${t.title}</div>
+      <div class="qt-text">${t.text}</div>
+    </div>
+  `).join('');
+  initReveal();
+}
+
+/* ════════════════════════════════════════════
+   COUNTDOWN TIMER
+════════════════════════════════════════════ */
+function updateCountdown() {
+  const target = new Date('2026-06-11T19:00:00-04:00'); // Kickoff local time (EDT)
+  const now = new Date();
+  const diff = target - now;
+  
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '000';
+    document.getElementById('cd-hours').textContent = '00';
+    document.getElementById('cd-mins').textContent = '00';
+    document.getElementById('cd-secs').textContent = '00';
+    return;
+  }
+  
+  const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+  
+  document.getElementById('cd-days').textContent  = String(days).padStart(3, '0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('cd-mins').textContent  = String(mins).padStart(2, '0');
+  document.getElementById('cd-secs').textContent  = String(secs).padStart(2, '0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ════════════════════════════════════════════
+   DARK MODE
+════════════════════════════════════════════ */
+const darkToggle = document.getElementById('darkToggle');
+let isDark = localStorage.getItem('wc2026-dark') === 'true';
+applyTheme();
+
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  darkToggle.textContent = isDark ? '☀️' : '🌙';
+}
+darkToggle.addEventListener('click', () => {
+  isDark = !isDark;
+  localStorage.setItem('wc2026-dark', isDark);
+  applyTheme();
+  showToast(isDark ? '🌙 Dark mode on' : '☀️ Light mode on');
+});
+
+/* ════════════════════════════════════════════
+   SEARCH
+════════════════════════════════════════════ */
+const searchToggle  = document.getElementById('searchToggle');
+const searchOverlay = document.getElementById('searchOverlay');
+const searchInput   = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+const searchClose   = document.getElementById('searchClose');
+
+searchToggle.addEventListener('click', openSearch);
+searchClose.addEventListener('click', closeSearch);
+searchOverlay.addEventListener('click', e => { if (e.target === searchOverlay) closeSearch(); });
+
+function openSearch() {
+  searchOverlay.classList.add('open');
+  setTimeout(() => searchInput.focus(), 200);
+}
+function closeSearch() {
+  searchOverlay.classList.remove('open');
+  searchInput.value = '';
+  searchResults.innerHTML = '<div class="search-empty">Start typing to search cities, stadiums and hotels…</div>';
+}
+
+const SEARCH_INDEX = [
+  ...CITIES.map(c => ({ type: 'city', label: c.name, sub: `${c.country} · ${c.matches} matches`, tag: 'City', tagClass: 'tag-city', action: () => openCityModal(c.id) })),
+  ...STADIUMS_DATA.map(s => ({ type: 'stadium', label: s.name, sub: s.city + ' · ' + s.capacity, tag: 'Stadium', tagClass: 'tag-stadium', action: () => { closeSearch(); scrollTo('stadiums'); } })),
+  ...HOTELS_DATA.map(h => ({ type: 'hotel', label: h.name, sub: h.cityName + ' · $' + h.price + '/night', tag: 'Hotel', tagClass: 'tag-hotel', action: () => { closeSearch(); scrollTo('hotels'); } })),
+];
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) {
+    searchResults.innerHTML = '<div class="search-empty">Start typing to search cities, stadiums and hotels…</div>';
+    return;
+  }
+  const matches = SEARCH_INDEX.filter(item =>
+    item.label.toLowerCase().includes(q) || item.sub.toLowerCase().includes(q)
+  ).slice(0, 8);
+  
+  if (!matches.length) {
+    searchResults.innerHTML = '<div class="search-empty">No results found for "' + q + '"</div>';
+    return;
+  }
+  
+  const icons = { city: '🏙️', stadium: '🏟️', hotel: '🏨' };
+  searchResults.innerHTML = matches.map(m => `
+    <div class="search-result-item" onclick="(${m.action.toString()})()">
+      <div class="sr-icon">${icons[m.type]}</div>
+      <div class="sr-info">
+        <strong>${m.label}</strong>
+        <span>${m.sub}</span>
+      </div>
+      <span class="sr-tag ${m.tagClass}">${m.tag}</span>
+    </div>
+  `).join('');
+  
+  document.querySelectorAll('.search-result-item').forEach((el, i) => {
+    el.addEventListener('click', () => {
+      matches[i].action();
+      closeSearch();
+    });
+  });
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeSearch(); closeModal(); }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'k') { e.preventDefault(); openSearch(); }
+});
+
+/* ════════════════════════════════════════════
+   MOBILE NAV
+════════════════════════════════════════════ */
+const menuToggle = document.getElementById('menuToggle');
+const mobileNav  = document.getElementById('mobileNav');
+menuToggle.addEventListener('click', () => {
+  mobileNav.classList.toggle('open');
+  menuToggle.textContent = mobileNav.classList.contains('open') ? '✕' : '☰';
+});
+function closeMobileNav() {
+  mobileNav.classList.remove('open');
+  menuToggle.textContent = '☰';
+}
+
+/* ════════════════════════════════════════════
+   HOTEL TABS
+════════════════════════════════════════════ */
+document.getElementById('hotelTabs').addEventListener('click', e => {
+  const tab = e.target.closest('.htab');
+  if (!tab) return;
+  document.querySelectorAll('.htab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  renderHotels(tab.dataset.city);
+});
+
+/* ════════════════════════════════════════════
+   CITY MODAL
+════════════════════════════════════════════ */
+let currentCity = null;
+function openCityModal(id) {
+  const city = CITIES.find(c => c.id === id);
+  if (!city) return;
+  currentCity = city;
+  
+  document.getElementById('modalFlag').textContent = city.flag;
+  document.getElementById('modalTitle').textContent = city.name;
+  document.getElementById('modalSubtitle').textContent = city.country + ' · ' + city.matches + ' World Cup matches';
+  
+  // Overview panel
+  document.getElementById('panel-overview').innerHTML = `
+    <div class="modal-info-grid">
+      <div class="modal-info-card"><div class="mic-label">Timezone</div><div class="mic-value">🕐 ${city.timezone}</div></div>
+      <div class="modal-info-card"><div class="mic-label">Population</div><div class="mic-value">👥 ${city.population}</div></div>
+      <div class="modal-info-card"><div class="mic-label">Climate (June)</div><div class="mic-value">🌡️ ${city.climate}</div></div>
+      <div class="modal-info-card"><div class="mic-label">Matches Hosted</div><div class="mic-value">⚽ ${city.matches} games</div></div>
+    </div>
+    <p class="modal-desc">${city.desc}</p>
+    <div class="modal-attractions">
+      <h4>Top Attractions</h4>
+      <ul class="attraction-list">${city.attractions.map(a=>`<li>${a}</li>`).join('')}</ul>
+    </div>
+  `;
+  
+  // Stadium panel
+  document.getElementById('panel-stadium').innerHTML = `
+    <div class="modal-info-grid">
+      <div class="modal-info-card"><div class="mic-label">Venue</div><div class="mic-value">🏟️ ${city.stadium}</div></div>
+      <div class="modal-info-card"><div class="mic-label">Capacity</div><div class="mic-value">👥 ${city.stadiumCap}</div></div>
+    </div>
+    <p class="modal-desc">Transport to the stadium: ${city.transport}</p>
+    <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:1rem;font-size:.88rem;color:var(--text2)">
+      💡 <strong>Pro tip:</strong> ${city.bestArea}
+    </div>
+  `;
+  
+  // Hotels panel
+  const cityHotels = HOTELS_DATA.filter(h => h.city === id);
+  document.getElementById('panel-hotels').innerHTML = cityHotels.length
+    ? cityHotels.map(h => `
+      <div style="display:flex;gap:1rem;align-items:flex-start;padding:.75rem 0;border-bottom:1px solid var(--border)">
+        <span style="font-size:1.8rem">${h.emoji}</span>
+        <div style="flex:1">
+          <strong style="font-size:.9rem">${h.name}</strong>
+          <div style="font-size:.78rem;color:var(--text3);margin-top:.15rem">${h.stars} · $${h.price}/night</div>
+          <div style="font-size:.78rem;color:var(--text3)">${h.dist}</div>
+        </div>
+        <button class="btn-book" style="flex-shrink:0" onclick="showToast('Booking ${h.name}…')">Book</button>
+      </div>
+    `).join('')
+    : '<p style="color:var(--text3);padding:1rem 0">Hotel listings for this city coming soon.</p>';
+  
+  // Tips panel
+  document.getElementById('panel-tips').innerHTML = `
+    <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:1.25rem;margin-bottom:1rem">
+      <div style="font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--brand);margin-bottom:.5rem">Travel Tip</div>
+      <p style="font-size:.9rem;color:var(--text2);line-height:1.7">${city.travelTip}</p>
+    </div>
+    <div style="background:var(--bg3);border-radius:var(--radius-sm);padding:1.25rem">
+      <div style="font-size:.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--brand2);margin-bottom:.5rem">Best Area to Stay</div>
+      <p style="font-size:.9rem;color:var(--text2);line-height:1.7">${city.bestArea}</p>
+    </div>
+  `;
+  
+  // Reset tabs
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelector('.modal-tab').classList.add('active');
+  document.querySelectorAll('.modal-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-overview').classList.add('active');
+  
+  document.getElementById('cityModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('cityModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function switchTab(panel) {
+  document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.modal-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + panel).classList.add('active');
+}
+
+document.getElementById('cityModal').addEventListener('click', e => {
+  if (e.target === document.getElementById('cityModal')) closeModal();
+});
+
+/* ════════════════════════════════════════════
+   NAVBAR SCROLL BEHAVIOUR
+════════════════════════════════════════════ */
+const navbar = document.getElementById('navbar');
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = document.querySelectorAll('section[id], div[id="countdown"]');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+  
+  // Active nav link
+  let current = '';
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+/* ════════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════════ */
+function initReveal() {
+  const els = document.querySelectorAll('.reveal:not(.visible)');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
+}
+
+/* ════════════════════════════════════════════
+   TOAST
+════════════════════════════════════════════ */
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ════════════════════════════════════════════
+   SMOOTH SCROLL
+════════════════════════════════════════════ */
+function scrollTo(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); closeMobileNav(); }
+  });
+});
+
+/* ════════════════════════════════════════════
+   HERO PITCH LINES
+════════════════════════════════════════════ */
+function drawPitchLines() {
+  const c = document.getElementById('heroPitch');
+  const lines = [
+    { top:'50%', left:'0', right:'0', height:'1px' },
+    { top:'0', bottom:'0', left:'50%', width:'1px' },
+    { top:'25%', left:'35%', right:'35%', height:'1px' },
+    { top:'75%', left:'35%', right:'35%', height:'1px' },
+  ];
+  lines.forEach(l => {
+    const d = document.createElement('div');
+    d.className = 'pitch-line';
+    Object.assign(d.style, l);
+    c.appendChild(d);
+  });
+}
+
+/* ════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════ */
+drawPitchLines();
+renderCities();
+renderStadiums();
+renderHotels();
+renderVenuesList();
+renderTipsSidebar();
+renderQuickTips();
+setTimeout(initReveal, 100);
+</script>
+</body>
+</html>
