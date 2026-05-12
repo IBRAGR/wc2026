@@ -13,6 +13,41 @@
   <meta name="language" content="French">
   <link rel="canonical" href="https://wc26travel.com">
 
+  <!-- ═══ FAVICON ═══ -->
+  <!-- SVG favicon (inline data URI – fonctionne sans fichier externe) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23080B12'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23E8192C' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23F7C645' stroke-width='1.5' stroke-dasharray='6 4'/%3E%3Ctext x='32' y='38' text-anchor='middle' font-size='20' font-family='Arial' fill='white'%3E%E2%9A%BD%3C/text%3E%3C/svg%3E">
+  <!-- PNG fallback pour Safari/iOS (remplace par un vrai fichier /favicon.png si tu en as un) -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23080B12'/%3E%3Ccircle cx='90' cy='90' r='55' fill='none' stroke='%23E8192C' stroke-width='8'/%3E%3Ctext x='90' y='108' text-anchor='middle' font-size='60' font-family='Arial' fill='white'%3E%E2%9A%BD%3C/text%3E%3C/svg%3E">
+
+  <!-- ═══ GOOGLE SEARCH CONSOLE VERIFICATION ═══ -->
+  <!-- INSTRUCTION : remplace le content par ton code réel depuis Search Console → "Balise HTML" -->
+  <!-- Étapes : console.search.google.com → Ajouter une propriété → wc26travel.com → Balise HTML → copier le content -->
+  <meta name="google-site-verification" content="REMPLACE_PAR_TON_CODE_SEARCH_CONSOLE">
+
+  <!-- ═══ GOOGLE ANALYTICS 4 ═══ -->
+  <!-- INSTRUCTION : remplace G-XXXXXXXXXX par ton Measurement ID depuis analytics.google.com -->
+  <!-- Étapes : analytics.google.com → Créer compte → Flux Web → wc26travel.com → copier G-XXXXXXXXXX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      page_title: document.title,
+      page_location: window.location.href,
+      // Événements personnalisés WC26 (auto-trackés)
+      send_page_view: true
+    });
+
+    // ─── Tracking événements personnalisés ───
+    // Appel depuis n'importe où dans le code : trackEvent('nom', {param: valeur})
+    function trackEvent(eventName, params = {}) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, params);
+      }
+    }
+  </script>
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Coupe du Monde 2026 | Guide Voyage FIFA Officiel">
@@ -1224,6 +1259,8 @@ window.openBooking = function(name, price, link) {
     <span style="font-size:0.85rem;color:var(--text2);">Vous serez redirigé vers la plateforme de réservation.</span>`;
   document.getElementById('bookingLink').href = link || 'https://www.booking.com';
   document.getElementById('bookingModal').classList.add('active');
+  // GA4 – hotel view event
+  trackEvent('hotel_modal_open', { hotel_name: name, hotel_price: price, currency: 'USD' });
 };
 
 /* ═══════════════════════════════════════════════
@@ -1446,6 +1483,8 @@ async function loadCurrency() {
 document.getElementById('ticketAlertBtn').addEventListener('click', () => {
   document.getElementById('alertMsg').textContent = '🔔 Alerte activée ! Vous recevrez une notification lors des nouvelles disponibilités.';
   setTimeout(() => document.getElementById('alertMsg').textContent = '', 4000);
+  // GA4 event
+  trackEvent('ticket_alert_signup', { method: 'button_click', section: 'tickets' });
 });
 
 /* ═══════════════════════════════════════════════
@@ -1471,15 +1510,29 @@ document.getElementById('aiSearch').addEventListener('input', function() {
     if (match) {
       bar.innerHTML = `<i class="fas fa-sparkles inline-icon"></i>${match.msg}`;
       bar.classList.add('show');
+      // GA4 event – track what users search for
+      trackEvent('ai_search_match', { search_term: q, matched_keyword: match.keywords[0] });
     } else {
       bar.classList.remove('show');
+      if (q.length >= 5) trackEvent('ai_search_no_result', { search_term: q });
     }
   }, 300);
 });
 
 /* ═══════════════════════════════════════════════
-   THEME TOGGLE
+   GA4 – OUTBOUND LINK TRACKING
+   Track clicks vers FIFA.com/tickets et Booking.com
 ═══════════════════════════════════════════════ */
+document.addEventListener('click', function(e) {
+  const a = e.target.closest('a[href]');
+  if (!a) return;
+  const href = a.href || '';
+  if (href.includes('fifa.com')) {
+    trackEvent('outbound_click', { link_url: href, link_type: 'tickets_fifa', link_text: a.textContent.trim().substring(0, 50) });
+  } else if (href.includes('booking.com')) {
+    trackEvent('outbound_click', { link_url: href, link_type: 'hotel_booking', link_text: a.textContent.trim().substring(0, 50) });
+  }
+});
 const root = document.documentElement;
 const themeIcon = document.getElementById('themeIcon');
 function applyTheme(theme) {
