@@ -535,18 +535,6 @@
     }
     footer strong { color:var(--red); }
 
-    /* ─── ADMIN (hidden) ─── */
-    .admin-panel {
-      display:none; position:fixed; bottom:24px; right:24px;
-      width:260px; background:var(--bg2);
-      border:1px solid var(--gold); border-radius:20px;
-      padding:1.4rem; z-index:3000; backdrop-filter:blur(16px);
-      box-shadow:var(--shadow);
-    }
-    .admin-panel.show { display:block; }
-    .admin-stat { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid var(--border); font-size:0.85rem; }
-    .admin-stat:last-of-type { border:none; }
-
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:none;} }
     .fade-up { animation:fadeUp 0.6s ease forwards; }
@@ -860,16 +848,23 @@
     <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;margin-bottom:16px;">
       ⚽ WC26 TRAVEL GUIDE
     </div>
-    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px;">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">
       <a href="blog.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'"><i class="fas fa-newspaper"></i> Blog</a>
-      <a href="new-york.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">New York</a>
-      <a href="los-angeles.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Los Angeles</a>
-      <a href="miami.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Miami</a>
-      <a href="dallas.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Dallas</a>
-      <a href="mexico-city.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Mexico City</a>
+      <a href="new-york.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">New York</a>
+      <a href="los-angeles.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Los Angeles</a>
+      <a href="miami.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Miami</a>
+      <a href="dallas.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Dallas</a>
+      <a href="mexico-city.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Mexico City</a>
       <a href="https://www.fifa.com/en/tickets" target="_blank" rel="noopener noreferrer" style="color:var(--red);text-decoration:none;font-size:0.85rem"><i class="fas fa-ticket-alt"></i> Billets FIFA</a>
     </div>
-    <p style="font-size:0.78rem">© 2026 <strong>WC26 Travel</strong> · Guide voyage non officiel · Données FIFA publiques</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px;padding-top:14px;border-top:1px solid var(--border);">
+      <a href="about.html" style="color:var(--text2);text-decoration:none;font-size:0.82rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">À propos</a>
+      <a href="contact.html" style="color:var(--text2);text-decoration:none;font-size:0.82rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Contact</a>
+      <a href="privacy.html" style="color:var(--text2);text-decoration:none;font-size:0.82rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Confidentialité</a>
+      <a href="terms.html" style="color:var(--text2);text-decoration:none;font-size:0.82rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Mentions légales</a>
+      <a href="mailto:him20ibra@gmail.com" style="color:var(--text2);text-decoration:none;font-size:0.82rem" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'"><i class="fas fa-envelope"></i> him20ibra@gmail.com</a>
+    </div>
+    <p style="font-size:0.78rem;color:var(--text2)">© 2026 <strong>WC26 Travel</strong> · Guide voyage non officiel · Site indépendant, non affilié à la FIFA</p>
   </div>
 </footer>
 
@@ -936,17 +931,7 @@
   </div>
 </div>
 
-<!-- ADMIN PANEL (Ctrl+Shift+A) -->
-<div id="adminPanel" class="admin-panel" role="complementary" aria-label="Panneau admin">
-  <h4 style="margin-bottom:12px;font-family:'Bebas Neue',sans-serif;font-size:1.2rem;">📊 Admin Dashboard</h4>
-  <div class="admin-stat"><span>Visites simulées</span><strong>12 345</strong></div>
-  <div class="admin-stat"><span>Clics hôtels</span><strong>890</strong></div>
-  <div class="admin-stat"><span>Requêtes chatbot</span><strong>1 240</strong></div>
-  <div style="display:flex;gap:8px;margin-top:12px;">
-    <button id="addHotelBtn" class="btn btn-ghost" style="padding:8px 14px;font-size:0.8rem;">+ Hôtel</button>
-    <button id="closeAdmin" class="btn btn-ghost" style="padding:8px 14px;font-size:0.8rem;">Fermer</button>
-  </div>
-</div>
+
 
 <!-- Scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -1587,20 +1572,6 @@ document.getElementById('menuBtn').addEventListener('click', () => {
 /* ═══════════════════════════════════════════════
    ADMIN PANEL (Ctrl+Shift+A)
 ═══════════════════════════════════════════════ */
-let adminVisible = false;
-document.addEventListener('keydown', e => {
-  if (e.ctrlKey && e.shiftKey && e.key === 'A') {
-    adminVisible = !adminVisible;
-    document.getElementById('adminPanel').classList.toggle('show', adminVisible);
-  }
-});
-document.getElementById('addHotelBtn').addEventListener('click', () => {
-  hotelsData.push({ name:"Nouveau Hôtel Test", city:"Mexico City", price:199, rating:7.8, stars:"★★★★☆", link:"https://www.booking.com", img:"https://images.unsplash.com/photo-1535827841776-24afc1e255ac?w=600&h=300&fit=crop&q=80" });
-  renderHotels();
-  document.getElementById('adminPanel').classList.remove('show');
-});
-document.getElementById('closeAdmin').addEventListener('click', () => document.getElementById('adminPanel').classList.remove('show'));
-
 /* ═══════════════════════════════════════════════
    CLOSE MODALS ON BACKDROP CLICK
 ═══════════════════════════════════════════════ */
