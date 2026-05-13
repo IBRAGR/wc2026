@@ -23,7 +23,7 @@
   <!-- INSTRUCTION : remplace le content par ton code réel depuis Search Console → "Balise HTML" -->
   <!-- Étapes : console.search.google.com → Ajouter une propriété → wc26travel.com → Balise HTML → copier le content -->
   <meta name="google-site-verification" content="REMPLACE_PAR_TON_CODE_SEARCH_CONSOLE">
-  <script src="https://d3u598arehftfk.cloudfront.net/prebid_hb_38811_40860.js" async> </script>
+
   <!-- ═══ GOOGLE ANALYTICS 4 ═══ -->
   <!-- INSTRUCTION : remplace G-XXXXXXXXXX par ton Measurement ID depuis analytics.google.com -->
   <!-- Étapes : analytics.google.com → Créer compte → Flux Web → wc26travel.com → copier G-XXXXXXXXXX -->
@@ -587,6 +587,7 @@
     <div class="logo">⚽ WC26</div>
     <div class="nav-links" id="navLinks">
       <a href="#home"><i class="fas fa-home"></i> Accueil</a>
+      <a href="blog.html"><i class="fas fa-newspaper"></i> Blog</a>
       <a href="#cities"><i class="fas fa-city"></i> Villes</a>
       <a href="#stadiums"><i class="fas fa-building"></i> Stades</a>
       <a href="#hotels"><i class="fas fa-hotel"></i> Hôtels</a>
@@ -595,6 +596,12 @@
       <a href="#map-section"><i class="fas fa-map-marked-alt"></i> Carte</a>
       <a href="#ai-tools"><i class="fas fa-robot"></i> IA Voyage</a>
       <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+      <span style="width:1px;background:var(--border);align-self:stretch;margin:8px 4px"></span>
+      <a href="new-york.html" style="color:var(--gold)"><i class="fas fa-map-pin"></i> NYC</a>
+      <a href="los-angeles.html" style="color:var(--gold)"><i class="fas fa-map-pin"></i> LA</a>
+      <a href="miami.html" style="color:var(--gold)"><i class="fas fa-map-pin"></i> Miami</a>
+      <a href="dallas.html" style="color:var(--gold)"><i class="fas fa-map-pin"></i> Dallas</a>
+      <a href="mexico-city.html" style="color:var(--gold)"><i class="fas fa-map-pin"></i> Mexico</a>
     </div>
     <div class="nav-actions">
       <button class="btn-icon" id="themeToggle" title="Basculer thème" aria-label="Basculer mode sombre/clair">
@@ -850,12 +857,19 @@
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;margin-bottom:8px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;margin-bottom:16px;">
       ⚽ WC26 TRAVEL GUIDE
     </div>
-    <p>© 2026 <strong>WC26 Travel</strong> · Guide voyage non officiel · Données FIFA publiques · 
-       <a href="https://www.fifa.com/en/tickets" target="_blank" rel="noopener noreferrer" style="color:var(--red);">Billets officiels sur FIFA.com</a>
-    </p>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:16px;">
+      <a href="blog.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'"><i class="fas fa-newspaper"></i> Blog</a>
+      <a href="new-york.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">New York</a>
+      <a href="los-angeles.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Los Angeles</a>
+      <a href="miami.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Miami</a>
+      <a href="dallas.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Dallas</a>
+      <a href="mexico-city.html" style="color:var(--text2);text-decoration:none;font-size:0.85rem;transition:var(--transition)" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--text2)'">Mexico City</a>
+      <a href="https://www.fifa.com/en/tickets" target="_blank" rel="noopener noreferrer" style="color:var(--red);text-decoration:none;font-size:0.85rem"><i class="fas fa-ticket-alt"></i> Billets FIFA</a>
+    </div>
+    <p style="font-size:0.78rem">© 2026 <strong>WC26 Travel</strong> · Guide voyage non officiel · Données FIFA publiques</p>
   </div>
 </footer>
 
@@ -1035,14 +1049,28 @@ function starsHtml(rating) {
    RENDER CITIES
 ═══════════════════════════════════════════════ */
 function renderCities() {
-  document.getElementById('citiesGrid').innerHTML = cities.map(c => `
+  const cityPages = {
+    'New York/New Jersey': 'new-york.html',
+    'Los Angeles':         'los-angeles.html',
+    'Miami':               'miami.html',
+    'Dallas':              'dallas.html',
+    'Mexico City':         'mexico-city.html'
+  };
+  document.getElementById('citiesGrid').innerHTML = cities.map(c => {
+    const pageLink = cityPages[c.name];
+    const guideBtn = pageLink
+      ? `<a href="${pageLink}" class="btn btn-red" style="flex:1;padding:9px;justify-content:center;" onclick="trackEvent('city_guide_click',{city:'${c.name}'})"><i class="fas fa-book-open"></i> Guide complet</a>`
+      : '';
+    return `
     <article class="card">
       <div style="overflow:hidden;">
+        ${pageLink ? `<a href="${pageLink}">` : ''}
         <img src="${c.img}"
           alt="Vue de ${c.name} - ville hôte Coupe du Monde 2026"
           class="card-img"
           loading="lazy"
           onerror="this.src='https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=300&fit=crop&q=80'">
+        ${pageLink ? `</a>` : ''}
       </div>
       <div class="card-body">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
@@ -1051,12 +1079,15 @@ function renderCities() {
         </div>
         <p><i class="fas fa-building inline-icon"></i>${c.stadium}</p>
         <div class="divider"></div>
-        <button class="btn btn-ghost" style="width:100%;padding:9px;" onclick="openMapModal(${c.lat},${c.lng},'${c.name}')">
-          <i class="fas fa-map-pin"></i> Voir sur la carte
-        </button>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-ghost" style="flex:1;padding:9px;" onclick="openMapModal(${c.lat},${c.lng},'${c.name}')">
+            <i class="fas fa-map-pin"></i> Carte
+          </button>
+          ${guideBtn}
+        </div>
       </div>
     </article>
-  `).join('');
+  `}).join('');
 }
 
 /* ═══════════════════════════════════════════════
