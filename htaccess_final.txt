@@ -1,0 +1,36 @@
+Options -Indexes
+RewriteEngine On
+
+# 1. Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# 2. Redirect index.html to /
+RewriteCond %{THE_REQUEST} \s/+index\.html [NC]
+RewriteRule ^ / [R=301,L]
+
+# 3. Redirect page.html to /page (removes .html from URL bar)
+RewriteCond %{THE_REQUEST} \s/+([^/?#\s]+)\.html [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# 4. Serve page.html when /page is requested (clean URL → file)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}.html -f
+RewriteRule ^([^/]+)/?$ /$1.html [L]
+
+# 404
+ErrorDocument 404 /index.html
+
+# Gzip
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript
+</IfModule>
+
+# Cache
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 1 hour"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+</IfModule>
