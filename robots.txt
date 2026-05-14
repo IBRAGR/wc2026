@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://wc26travel.com/sitemap.xml
+Sitemap: https://usawc26.com/sitemap.xml
