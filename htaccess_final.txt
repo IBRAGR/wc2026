@@ -5,19 +5,19 @@ RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# 2. Redirect index.html to /
+# 2. Add trailing slash to directories (already handled by subfolder structure)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI}/index.html -f
+RewriteRule ^(.+)$ /$1/ [R=301,L]
+
+# 3. Redirect old .html URLs → clean subfolder URLs (for old bookmarks/links)
 RewriteCond %{THE_REQUEST} \s/+index\.html [NC]
 RewriteRule ^ / [R=301,L]
 
-# 3. Redirect page.html to /page (removes .html from URL bar)
 RewriteCond %{THE_REQUEST} \s/+([^/?#\s]+)\.html [NC]
-RewriteRule ^ /%1 [R=301,L]
-
-# 4. Serve page.html when /page is requested (clean URL → file)
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{DOCUMENT_ROOT}/%{REQUEST_URI}.html -f
-RewriteRule ^([^/]+)/?$ /$1.html [L]
+RewriteRule ^ /%1/ [R=301,L]
 
 # 404
 ErrorDocument 404 /index.html
@@ -33,4 +33,6 @@ ErrorDocument 404 /index.html
   ExpiresByType text/html "access plus 1 hour"
   ExpiresByType text/css "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/png "access plus 6 months"
 </IfModule>
