@@ -1,333 +1,347 @@
-<!-- NAVIGATION CORRIGÉE -->
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<title>WC26 Travel</title>
+
+<style>
+:root{
+  --red:#E8192C;
+  --gold:#F7C645;
+  --bg:#080B12;
+  --bg2:#0E1320;
+  --text:#EEF1F8;
+  --text2:#8892A4;
+  --card:rgba(14,19,32,0.85);
+  --border:rgba(255,255,255,0.08);
+  --shadow:0 20px 50px rgba(0,0,0,0.5);
+  --radius:16px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* NAVBAR */
+.nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(8,11,18,0.75);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
+}
+
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+}
+
+.logo{
+  font-family:'Bebas Neue';
+  font-size:26px;
+  color:var(--text);
+  text-decoration:none;
+}
+
+.nav-links{
+  display:flex;
+  gap:10px;
+}
+
+.nav-links a{
+  color:var(--text2);
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:10px;
+  transition:0.3s;
+  font-size:14px;
+}
+
+.nav-links a:hover,
+.nav-links a.active{
+  color:var(--red);
+  background:rgba(232,25,44,0.1);
+}
+
+/* LAYOUT */
+.container{
+  max-width:1200px;
+  margin:100px auto 40px;
+  padding:20px;
+}
+
+/* BREADCRUMB */
+.breadcrumb{
+  display:flex;
+  gap:10px;
+  font-size:13px;
+  color:var(--text2);
+  margin-bottom:20px;
+}
+
+.breadcrumb a{
+  color:var(--text2);
+  text-decoration:none;
+}
+
+.breadcrumb a:hover{
+  color:var(--red);
+}
+
+/* CTA */
+.cta-article{
+  background:linear-gradient(135deg,rgba(232,25,44,0.1),rgba(247,198,69,0.05));
+  border:1px solid var(--border);
+  padding:20px;
+  border-radius:var(--radius);
+  margin:20px 0;
+}
+
+.cta-article h3{margin-bottom:8px}
+.cta-article p{color:var(--text2);font-size:14px;margin-bottom:12px}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.btn-red{
+  background:var(--red);
+  color:white;
+}
+
+/* RELATED */
+.related-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:15px;
+  margin-top:15px;
+}
+
+.related-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  text-decoration:none;
+  color:var(--text);
+  transition:0.3s;
+}
+
+.related-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--red);
+}
+
+.related-card img{
+  width:100%;
+  height:140px;
+  object-fit:cover;
+}
+
+.related-body{
+  padding:12px;
+}
+
+.badge{
+  font-size:11px;
+  padding:3px 8px;
+  border-radius:20px;
+  display:inline-block;
+  margin-bottom:6px;
+}
+
+.badge-red{background:rgba(232,25,44,0.2);color:var(--red);}
+.badge-blue{background:rgba(59,130,246,0.15);color:#60a5fa;}
+
+/* SIDEBAR */
+.sidebar{
+  margin-top:30px;
+}
+
+.sidebar-block{
+  background:var(--card);
+  border:1px solid var(--border);
+  padding:15px;
+  border-radius:var(--radius);
+  margin-bottom:15px;
+}
+
+.sidebar-block h3{
+  margin-bottom:10px;
+}
+
+.sidebar-link{
+  display:block;
+  color:var(--text2);
+  text-decoration:none;
+  padding:6px 0;
+  font-size:14px;
+}
+
+.sidebar-link:hover{
+  color:var(--red);
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:30px 0;
+  margin-top:40px;
+}
+
+.footer-inner{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:15px;
+  padding:0 20px;
+}
+
+.footer-links{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.footer-links a{
+  color:var(--text2);
+  text-decoration:none;
+  font-size:13px;
+}
+
+.footer-links a:hover{
+  color:var(--red);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{display:none;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    
     <a href="/" class="logo">⚽ WC26</a>
 
     <div class="nav-links">
       <a href="/"><i class="fas fa-home"></i> Accueil</a>
-
-      <a href="/blog/" class="active">
-        <i class="fas fa-newspaper"></i> Blog
-      </a>
-
-      <a href="/new-york/">
-        <i class="fas fa-map-pin"></i> New York
-      </a>
-
-      <a href="/los-angeles/">
-        <i class="fas fa-map-pin"></i> Los Angeles
-      </a>
-
-      <a href="/miami/">
-        <i class="fas fa-map-pin"></i> Miami
-      </a>
-
-      <a href="/dallas/">
-        <i class="fas fa-map-pin"></i> Dallas
-      </a>
-
-      <a href="/mexico-city/">
-        <i class="fas fa-map-pin"></i> Mexico City
-      </a>
+      <a href="/blog/" class="active"><i class="fas fa-newspaper"></i> Blog</a>
+      <a href="/new-york/">New York</a>
+      <a href="/miami/">Miami</a>
+      <a href="/dallas/">Dallas</a>
     </div>
-
-    <div class="nav-actions">
-      <button class="btn-icon" id="themeToggle" aria-label="Thème">
-        <i class="fas fa-moon" id="themeIcon"></i>
-      </button>
-    </div>
-
   </div>
 </nav>
 
+<!-- CONTENT -->
+<div class="container">
 
-<!-- CANONICAL CORRIGÉ -->
-<link rel="canonical" href="https://wc26travel.com/blog/hotels-stades-fifa-2026-reserver/">
-
-
-<!-- BREADCRUMB CORRIGÉ -->
-<nav class="breadcrumb" aria-label="Fil d'Ariane">
-  <a href="/">WC26 Travel</a>
-  <span>›</span>
-
-  <a href="/blog/">Blog</a>
-  <span>›</span>
-
-  <span style="color:var(--gold)">Hôtels</span>
-</nav>
-
-
-<!-- CTA BOOKING -->
-<div class="cta-article">
-  <h3>Prêt à planifier votre voyage ?</h3>
-
-  <p>
-    Retrouvez tous nos guides de villes, hôtels et billets
-    pour la Coupe du Monde 2026.
-  </p>
-
-  <a
-    href="https://www.booking.com"
-    class="btn btn-red"
-    onclick="trackEvent('article_cta_click',{article:'hotels-stades-fifa-2026-reserver'})"
-  >
-    <i class="fas fa-arrow-right"></i>
-    Rechercher des hôtels
-  </a>
-</div>
-
-
-<!-- ARTICLES LIÉS CORRIGÉS -->
-<div class="related-section">
-
-  <div class="s-label">
-    <i class="fas fa-newspaper"></i>
-    ARTICLES LIÉS
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="/">WC26</a> ›
+    <a href="/blog/">Blog</a> ›
+    <span style="color:var(--gold)">Hôtels</span>
   </div>
 
+  <!-- CTA -->
+  <div class="cta-article">
+    <h3>Prêt à planifier votre voyage ?</h3>
+    <p>Comparez les meilleurs hôtels pour la Coupe du Monde 2026.</p>
+    <a href="https://www.booking.com" class="btn btn-red">
+      <i class="fas fa-search"></i> Rechercher hôtels
+    </a>
+  </div>
+
+  <!-- RELATED -->
   <div class="related-grid">
 
-    <!-- ARTICLE 1 -->
-    <a
-      href="/blog/billets-coupe-du-monde-2026-guide-complet/"
-      class="related-card"
-      onclick="trackEvent('related_article_click',{from:'hotels-stades-fifa-2026-reserver',to:'billets-coupe-du-monde-2026-guide-complet'})"
-    >
-
-      <img
-        src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600&h=350&fit=crop&q=80"
-        alt="Billets Coupe du Monde 2026 : Guide Complet pour les Acheter"
-        loading="lazy"
-      >
-
+    <a class="related-card" href="/billets/">
+      <img src="https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=600">
       <div class="related-body">
         <span class="badge badge-red">Billets</span>
-
-        <h4>
-          Billets Coupe du Monde 2026 :
-          Guide Complet pour les Acheter
-        </h4>
-
-        <span style="font-size:0.78rem;color:var(--text2)">
-          <i class="fas fa-clock"></i>
-          8 min de lecture
-        </span>
+        <h4>Guide Billets 2026</h4>
       </div>
-
     </a>
 
-
-    <!-- ARTICLE 2 -->
-    <a
-      href="/blog/guide-voyage-usa-coupe-du-monde-2026/"
-      class="related-card"
-      onclick="trackEvent('related_article_click',{from:'hotels-stades-fifa-2026-reserver',to:'guide-voyage-usa-coupe-du-monde-2026'})"
-    >
-
-      <img
-        src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=600&h=350&fit=crop&q=80"
-        alt="Guide Voyage USA — Coupe du Monde 2026 : Visa, Vols, Budget"
-        loading="lazy"
-      >
-
+    <a class="related-card" href="/guide/">
+      <img src="https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=600">
       <div class="related-body">
-        <span class="badge badge-blue">Guide Voyage</span>
-
-        <h4>
-          Guide Voyage USA — Coupe du Monde 2026 :
-          Visa, Vols, Budget
-        </h4>
-
-        <span style="font-size:0.78rem;color:var(--text2)">
-          <i class="fas fa-clock"></i>
-          10 min de lecture
-        </span>
+        <span class="badge badge-blue">Guide</span>
+        <h4>Guide Voyage USA</h4>
       </div>
-
     </a>
 
-
-    <!-- ARTICLE 3 -->
-    <a
-      href="/blog/budget-voyage-coupe-du-monde-2026/"
-      class="related-card"
-      onclick="trackEvent('related_article_click',{from:'hotels-stades-fifa-2026-reserver',to:'budget-voyage-coupe-du-monde-2026'})"
-    >
-
-      <img
-        src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=350&fit=crop&q=80"
-        alt="Budget Voyage Coupe du Monde 2026 : Combien Prévoir ?"
-        loading="lazy"
-      >
-
+    <a class="related-card" href="/budget/">
+      <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600">
       <div class="related-body">
         <span class="badge badge-blue">Budget</span>
-
-        <h4>
-          Budget Voyage Coupe du Monde 2026 :
-          Combien Prévoir ?
-        </h4>
-
-        <span style="font-size:0.78rem;color:var(--text2)">
-          <i class="fas fa-clock"></i>
-          9 min de lecture
-        </span>
+        <h4>Budget 2026</h4>
       </div>
-
-    </a>
-
-  </div>
-</div>
-
-
-<!-- SIDEBAR CORRIGÉ -->
-<aside class="sidebar">
-
-  <!-- FIFA -->
-  <div class="sidebar-block">
-
-    <h3>
-      <i class="fas fa-ticket-alt"></i>
-      Billets FIFA 2026
-    </h3>
-
-    <p style="font-size:0.82rem;color:var(--text2);margin-bottom:12px">
-      Billets officiels uniquement sur FIFA.com
-    </p>
-
-    <a
-      href="https://www.fifa.com/en/tickets"
-      target="_blank"
-      rel="noopener"
-      class="btn btn-red"
-      style="width:100%;justify-content:center;padding:10px"
-    >
-      <i class="fas fa-external-link-alt"></i>
-      FIFA.com/tickets
     </a>
 
   </div>
 
+  <!-- SIDEBAR -->
+  <div class="sidebar">
 
-  <!-- HOTELS -->
-  <div class="sidebar-block">
-
-    <h3>
-      <i class="fas fa-hotel"></i>
-      Hôtels recommandés
-    </h3>
-
-    <a href="/new-york/" class="sidebar-link">
-      <i class="fas fa-map-pin"></i>
-      Hôtels New York 2026
-    </a>
-
-    <a href="/los-angeles/" class="sidebar-link">
-      <i class="fas fa-map-pin"></i>
-      Hôtels Los Angeles
-    </a>
-
-    <a href="/miami/" class="sidebar-link">
-      <i class="fas fa-map-pin"></i>
-      Hôtels Miami
-    </a>
-
-    <a href="/dallas/" class="sidebar-link">
-      <i class="fas fa-map-pin"></i>
-      Hôtels Dallas
-    </a>
-
-    <a href="/mexico-city/" class="sidebar-link">
-      <i class="fas fa-map-pin"></i>
-      Hôtels Mexico City
-    </a>
-
-  </div>
-
-
-  <!-- ARTICLES -->
-  <div class="sidebar-block">
-
-    <h3>
-      <i class="fas fa-newspaper"></i>
-      Articles récents
-    </h3>
-
-    <a
-      href="/blog/billets-coupe-du-monde-2026-guide-complet/"
-      class="sidebar-link"
-    >
-      <i class="fas fa-angle-right"></i>
-      Billets Coupe du Monde 2026
-    </a>
-
-    <a
-      href="/blog/guide-voyage-usa-coupe-du-monde-2026/"
-      class="sidebar-link"
-    >
-      <i class="fas fa-angle-right"></i>
-      Guide Voyage USA 2026
-    </a>
-
-    <a
-      href="/blog/metlife-stadium-finale-2026/"
-      class="sidebar-link"
-    >
-      <i class="fas fa-angle-right"></i>
-      MetLife Stadium Finale 2026
-    </a>
-
-    <a
-      href="/blog/budget-voyage-coupe-du-monde-2026/"
-      class="sidebar-link"
-    >
-      <i class="fas fa-angle-right"></i>
-      Budget Voyage 2026
-    </a>
-
-  </div>
-
-</aside>
-
-
-<!-- FOOTER CORRIGÉ -->
-<footer>
-
-  <div class="footer-inner">
-
-    <a href="/" class="logo" style="font-size:1.4rem">
-      ⚽ WC26
-    </a>
-
-    <div class="footer-links">
-
-      <a href="/blog/">Blog</a>
-
-      <a href="/new-york/">New York</a>
-
-      <a href="/los-angeles/">Los Angeles</a>
-
-      <a href="/miami/">Miami</a>
-
-      <a href="/dallas/">Dallas</a>
-
-      <a href="/mexico-city/">Mexico City</a>
-
-      <a
-        href="https://www.fifa.com/en/tickets"
-        target="_blank"
-        rel="noopener"
-      >
-        Billets FIFA
-      </a>
-
+    <div class="sidebar-block">
+      <h3>🏨 Hôtels villes</h3>
+      <a class="sidebar-link" href="/new-york/">New York</a>
+      <a class="sidebar-link" href="/los-angeles/">Los Angeles</a>
+      <a class="sidebar-link" href="/miami/">Miami</a>
     </div>
 
-    <p style="font-size:0.78rem;color:var(--text2)">
-      © 2026 WC26 Travel · Site non officiel
-    </p>
+    <div class="sidebar-block">
+      <h3>🎫 Billets FIFA</h3>
+      <a class="sidebar-link" href="https://www.fifa.com/en/tickets">Site officiel</a>
+    </div>
 
   </div>
 
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <a class="logo" href="/">⚽ WC26</a>
+
+    <div class="footer-links">
+      <a href="/blog/">Blog</a>
+      <a href="/new-york/">New York</a>
+      <a href="/miami/">Miami</a>
+    </div>
+
+  </div>
 </footer>
+
+</body>
+</html>
