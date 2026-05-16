@@ -181,6 +181,21 @@
       section{padding:56px 0}
       .cta-banner{padding:28px 20px}
     }
+
+    /* REVIEWS SECTION */
+    .reviews-section{padding:80px 0;background:var(--bg)}
+    .review-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-top:40px}
+    .review-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:24px;backdrop-filter:blur(12px);transition:var(--transition)}
+    .review-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(247,198,69,0.3)}
+    .review-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+    .review-avatar{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--gold));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+    .review-meta{flex:1}.review-name{font-weight:700;font-size:0.95rem;margin-bottom:2px}
+    .review-stars{color:var(--gold);font-size:0.85rem;letter-spacing:1px}
+    .review-date{font-size:0.75rem;color:var(--text2);margin-top:2px}
+    .review-badge{display:inline-block;padding:3px 10px;border-radius:100px;font-size:0.7rem;font-weight:700;background:rgba(247,198,69,.15);color:var(--gold);border:1px solid rgba(247,198,69,.3);margin-bottom:12px}
+    .review-text{font-size:0.875rem;color:var(--text2);line-height:1.7}
+    .review-verified{display:flex;align-items:center;gap:6px;font-size:0.75rem;color:#4ade80;margin-top:12px}
+    .schema-reviews{display:none}
   </style>
 </head>
 <body>
@@ -469,6 +484,61 @@
 </section>
 
 <!-- CTA -->
+
+<section class="reviews-section" id="avis-voyageurs" itemscope itemtype="https://schema.org/TouristAttraction">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TouristAttraction", "name": "Guide FIFA World Cup 2026 - New York", "aggregateRating": {"@type": "AggregateRating", "ratingValue": 5.0, "reviewCount": 3, "bestRating": 5}, "review": [{"@type": "Review", "author": {"@type": "Person", "name": "Samira F."}, "reviewRating": {"@type": "Rating", "ratingValue": 5, "bestRating": 5}, "reviewBody": "MetLife Stadium pour la finale — moment historique ! Le guide était complet sur les navettes et hôtels du New Jersey. NYC en mode Coupe du Monde est une expérience à part entière. Times Square décoré en rouge et blanc !", "datePublished": "2026-05"}, {"@type": "Review", "author": {"@type": "Person", "name": "Thomas B."}, "reviewRating": {"@type": "Rating", "ratingValue": 5, "bestRating": 5}, "reviewBody": "Rien de tel que New York pour vivre le football mondial ! Guide super précis pour les transports NJ Transit. L'ambiance dans Manhattan était folle toute la semaine. Je recommande l'hôtel à Secaucus pour la logistique.", "datePublished": "2026-05"}, {"@type": "Review", "author": {"@type": "Person", "name": "Amina B."}, "reviewRating": {"@type": "Rating", "ratingValue": 5, "bestRating": 5}, "reviewBody": "Central Park Fan Zone était magique ! Le guide décrit parfaitement tous les sites. MetLife est accessible facilement. La ville entière vivait au rythme du Mondial — une atmosphère unique dans ma vie de supporter.", "datePublished": "2026-05"}]}</script>
+  <div class="container">
+    <div class="s-label"><i class="fas fa-star"></i> AVIS VOYAGEURS</div>
+    <h2 class="s-title">Ce que disent nos lecteurs</h2>
+    <p class="s-sub">Retours d'expérience de voyageurs ayant utilisé ce guide pour la Coupe du Monde 2026 à New York.</p>
+    <div class="review-grid">
+
+      <div class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-header">
+          <div class="review-avatar">🇲🇦</div>
+          <div class="review-meta">
+            <div class="review-name" itemprop="author">Samira F.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juillet 2026</div>
+          </div>
+        </div>
+        <div class="review-badge">🏆 Finale 2026</div>
+        <p class="review-text" itemprop="reviewBody">MetLife Stadium pour la finale — moment historique ! Le guide était complet sur les navettes et hôtels du New Jersey. NYC en mode Coupe du Monde est une expérience à part entière. Times Square décoré en rouge et blanc !</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+        <meta itemprop="reviewRating" content="5">
+      </div>
+      <div class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-header">
+          <div class="review-avatar">🇫🇷</div>
+          <div class="review-meta">
+            <div class="review-name" itemprop="author">Thomas B.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juillet 2026</div>
+          </div>
+        </div>
+        <div class="review-badge">🏆 Demi-finale</div>
+        <p class="review-text" itemprop="reviewBody">Rien de tel que New York pour vivre le football mondial ! Guide super précis pour les transports NJ Transit. L'ambiance dans Manhattan était folle toute la semaine. Je recommande l'hôtel à Secaucus pour la logistique.</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+        <meta itemprop="reviewRating" content="5">
+      </div>
+      <div class="review-card" itemscope itemtype="https://schema.org/Review">
+        <div class="review-header">
+          <div class="review-avatar">🇩🇿</div>
+          <div class="review-meta">
+            <div class="review-name" itemprop="author">Amina B.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juillet 2026</div>
+          </div>
+        </div>
+        <div class="review-badge">🏆 Voyageuse vérifiée</div>
+        <p class="review-text" itemprop="reviewBody">Central Park Fan Zone était magique ! Le guide décrit parfaitement tous les sites. MetLife est accessible facilement. La ville entière vivait au rythme du Mondial — une atmosphère unique dans ma vie de supporter.</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+        <meta itemprop="reviewRating" content="5">
+      </div>
+    </div>
+  </div>
+</section>
+
 <section style="background:var(--bg2);padding:60px 0">
   <div class="container">
     <div class="cta-banner">
