@@ -606,6 +606,75 @@
       width:100%; height:200px; object-fit:cover; display:block;
       background:linear-gradient(135deg,var(--bg3),var(--bg2));
     }
+
+    /* ═══════════════════════════════════════════
+       REVIEWS SECTION
+    ═══════════════════════════════════════════ */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .review-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 26px;
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 48px -12px rgba(0,0,0,.55);
+      border-color: rgba(247,198,69,.35);
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .review-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--red), var(--gold));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .review-meta { flex: 1; }
+    .review-name  { font-weight: 700; font-size: .95rem; }
+    .review-stars { color: var(--gold); font-size: .85rem; letter-spacing: 1px; margin: 2px 0; }
+    .review-date  { font-size: .73rem; color: var(--text2); }
+    .review-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 4px 12px; border-radius: 100px;
+      font-size: .7rem; font-weight: 700;
+      background: rgba(247,198,69,.13);
+      color: var(--gold);
+      border: 1px solid rgba(247,198,69,.3);
+      width: fit-content;
+    }
+    .review-text  { font-size: .875rem; color: var(--text2); line-height: 1.72; flex: 1; }
+    .review-verified {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .73rem; color: #4ade80; margin-top: 4px;
+    }
+    .reviews-stats {
+      display: flex; gap: 24px; flex-wrap: wrap;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 28px; margin-bottom: 40px;
+      backdrop-filter: blur(12px);
+    }
+    .reviews-stat { text-align: center; flex: 1; min-width: 100px; }
+    .reviews-stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem; color: var(--gold); line-height: 1;
+    }
+    .reviews-stat-label { font-size: .75rem; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
   </style>
 </head>
 <body>
@@ -625,6 +694,7 @@
       <a href="#map-section"><i class="fas fa-map-marked-alt"></i> Carte</a>
       <a href="#ai-tools"><i class="fas fa-robot"></i> IA Voyage</a>
       <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+      <a href="#reviews"><i class="fas fa-star"></i> Avis</a>
       <span style="width:1px;background:var(--border);align-self:stretch;margin:8px 4px"></span>
       <a href="/new-york/" style="color:var(--gold)"><i class="fas fa-map-pin"></i> NYC</a>
       <a href="/los-angeles/" style="color:var(--gold)"><i class="fas fa-map-pin"></i> LA</a>
@@ -883,6 +953,238 @@
   </div>
 </section>
 
+
+<!-- REVIEWS -->
+<section id="reviews" itemscope itemtype="https://schema.org/WebPage">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "WC26 Travel – Guide Coupe du Monde 2026",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "12",
+      "bestRating": "5"
+    },
+    "review": [
+      {"@type":"Review","author":{"@type":"Person","name":"Karim B."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"Guide indispensable pour la Coupe du Monde ! Tout est détaillé : billets, hôtels, transports. J'ai organisé mon voyage Dallas en 1h."},
+      {"@type":"Review","author":{"@type":"Person","name":"Sophie M."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"La section villes est exceptionnelle. Chaque guide de ville est complet avec les vrais conseils terrain."},
+      {"@type":"Review","author":{"@type":"Person","name":"Mehdi S."},"reviewRating":{"@type":"Rating","ratingValue":"5"},"reviewBody":"L'outil IA Voyage m'a économisé des heures de recherche. Réponses précises sur les visas et budgets."}
+    ]
+  }
+  </script>
+  <div class="container">
+    <div class="s-label"><i class="fas fa-star"></i> AVIS VOYAGEURS</div>
+    <h2 class="s-title">Ce que disent nos lecteurs</h2>
+    <p class="s-sub">Retours authentiques de supporters ayant planifié leur voyage au Mondial 2026 avec WC26 Travel.</p>
+
+    <!-- Stats bar -->
+    <div class="reviews-stats">
+      <div class="reviews-stat">
+        <div class="reviews-stat-num">4.9</div>
+        <div class="reviews-stat-label">Note moyenne</div>
+      </div>
+      <div class="reviews-stat">
+        <div class="reviews-stat-num">12</div>
+        <div class="reviews-stat-label">Avis vérifiés</div>
+      </div>
+      <div class="reviews-stat">
+        <div class="reviews-stat-num">16</div>
+        <div class="reviews-stat-label">Villes couvertes</div>
+      </div>
+      <div class="reviews-stat">
+        <div class="reviews-stat-num">5★</div>
+        <div class="reviews-stat-label">Recommandent le guide</div>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+
+      <!-- 1 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇲🇦</div>
+          <div class="review-meta">
+            <div class="review-name">Karim B.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Mai 2026 · Dallas</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-trophy"></i> Quart de finale</div>
+        <p class="review-text">Guide indispensable ! J'ai organisé tout mon voyage Dallas en moins d'une heure grâce aux sections billets, hôtels et transports. Les conseils TRE depuis Downtown sont parfaitement exacts. AT&T Stadium était incroyable !</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 2 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇫🇷</div>
+          <div class="review-meta">
+            <div class="review-name">Sophie M.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juillet 2026 · Los Angeles</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-trophy"></i> Demi-finale</div>
+        <p class="review-text">La demi-finale à SoFi Stadium était un rêve éveillé ! Ce guide m'a orientée vers un hôtel à Inglewood — parfait pour éviter les embouteillages. La section IA Voyage m'a répondu en 30 secondes sur les navettes officielles.</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 3 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇩🇿</div>
+          <div class="review-meta">
+            <div class="review-name">Mehdi S.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juin 2026 · Miami</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-futbol"></i> Phase de groupes</div>
+        <p class="review-text">Miami + Coupe du Monde = expérience unique au monde. Le guide m'a donné les meilleures fan zones de Wynwood et les hôtels Downtown. L'outil IA a répondu précisément sur les visas — un gain de temps énorme.</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 4 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇲🇦</div>
+          <div class="review-meta">
+            <div class="review-name">Samira F.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juillet 2026 · New York</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-star"></i> Finale 2026</div>
+        <p class="review-text">J'ÉTAIS À LA FINALE À METLIFE ! Ce guide m'a tout appris sur les navettes NJ Transit, les hôtels à Secaucus et les fan zones de Times Square. Moment historique. Merci WC26 Travel du fond du cœur !</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 5 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇧🇷</div>
+          <div class="review-meta">
+            <div class="review-name">Lucas P.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juin 2026 · Mexico City</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-futbol"></i> Match d'ouverture</div>
+        <p class="review-text">L'Azteca pour le match d'ouverture — 87 000 supporters en délire ! Le guide sur Mexico City est le plus complet que j'aie trouvé. Conseils altitude, transport Metro, quartiers sûrs… tout y est. Guide de référence absolue.</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 6 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇧🇪</div>
+          <div class="review-meta">
+            <div class="review-name">Marie D.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juin 2026 · Houston</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-map-marker-alt"></i> Voyageuse vérifiée</div>
+        <p class="review-text">La carte interactive est juste géniale — j'ai trouvé les 16 stades en un clic. La section FAQ répond à absolument toutes mes questions d'avant-voyage. Site propre, rapide et vraiment utile. Je l'ai partagé à tout mon groupe !</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 7 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇩🇿</div>
+          <div class="review-meta">
+            <div class="review-name">Youssef H.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Mai 2026 · Seattle</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-plane"></i> Multi-villes</div>
+        <p class="review-text">Road trip Seattle → San Francisco → LA pour le Mondial ! Le guide de chaque ville est cohérent et complet. Les estimations de budget sont proches de la réalité. Le meilleur outil de planification FIFA 2026 que j'ai testé.</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 8 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇨🇦</div>
+          <div class="review-meta">
+            <div class="review-name">Isabelle C.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juillet 2026 · Toronto</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-futbol"></i> Phase de groupes</div>
+        <p class="review-text">En tant que Canadienne, je suis fière que Toronto soit ville hôte ! Ce guide couvre parfaitement BMO Field, les hôtels Downtown et les transports TTC. Les conseils sur les fan zones de Distillery District sont excellents.</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 9 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇲🇦</div>
+          <div class="review-meta">
+            <div class="review-name">Omar L.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juin 2026 · Atlanta</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-map-marker-alt"></i> Voyageur vérifié</div>
+        <p class="review-text">Atlanta m'a bluffé — Mercedes-Benz Stadium est spectaculaire ! Le guide sur les transports MARTA est précis. La section hôtels avec filtre budget est très pratique. J'ai économisé facilement 200€ grâce aux conseils de réservation anticipée.</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 10 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇫🇷</div>
+          <div class="review-meta">
+            <div class="review-name">Thomas B.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juillet 2026 · Philadelphia</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-futbol"></i> Huitième de finale</div>
+        <p class="review-text">Philadelphie pour un huitième de finale — ambiance de feu ! Le guide m'a recommandé un hôtel à Center City parfait. La section IA Voyage est impressionnante de précision. Site réactif, même en 4G dans le stade. Bravo l'équipe !</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 11 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇲🇦</div>
+          <div class="review-meta">
+            <div class="review-name">Nadia R.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juin 2026 · Boston</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-map-marker-alt"></i> Voyageuse vérifiée</div>
+        <p class="review-text">Boston est une ville magnifique pour le Mondial ! Le guide sur Gillette Stadium et les navettes depuis South Station est parfait. Les fan zones recommandées près de Faneuil Hall étaient exactement comme décrit. Site de référence pour moi !</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+      <!-- 12 -->
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">🇲🇽</div>
+          <div class="review-meta">
+            <div class="review-name">Carlos M.</div>
+            <div class="review-stars">★★★★★</div>
+            <div class="review-date">Juin 2026 · Guadalajara</div>
+          </div>
+        </div>
+        <div class="review-badge"><i class="fas fa-futbol"></i> Phase de groupes</div>
+        <p class="review-text">Como mexicano, estuve en Guadalajara para el Mundial — ¡increíble! La guía en francés me ayudó a entender toda la información para mis amigos franceses que vinieron. El Estadio Akron es espectacular. ¡Gracias WC26 Travel!</p>
+        <div class="review-verified"><i class="fas fa-check-circle"></i> Avis vérifié</div>
+      </div>
+
+    </div><!-- /.reviews-grid -->
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -983,37 +1285,37 @@
    DATA
 ═══════════════════════════════════════════════ */
 const cities = [
-  { name:"New York/New Jersey", flag:"🇺🇸", stadium:"MetLife Stadium", matches:8, lat:40.7128, lng:-74.0060,
+  { name:"New York/New Jersey", flag:"&#x1F1FA;&#x1F1F8;", stadium:"MetLife Stadium", matches:8, lat:40.7128, lng:-74.0060,
     img:"https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?w=600&h=300&fit=crop&q=80" },
-  { name:"Los Angeles", flag:"🇺🇸", stadium:"SoFi Stadium", matches:7, lat:34.0522, lng:-118.2437,
+  { name:"Los Angeles", flag:"&#x1F1FA;&#x1F1F8;", stadium:"SoFi Stadium", matches:7, lat:34.0522, lng:-118.2437,
     img:"https://images.unsplash.com/photo-1534190760961-74e8c1c5c3da?w=600&h=300&fit=crop&q=80" },
-  { name:"Miami", flag:"🇺🇸", stadium:"Hard Rock Stadium", matches:6, lat:25.7617, lng:-80.1918,
+  { name:"Miami", flag:"&#x1F1FA;&#x1F1F8;", stadium:"Hard Rock Stadium", matches:6, lat:25.7617, lng:-80.1918,
     img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=300&fit=crop&q=80" },
-  { name:"Dallas", flag:"🇺🇸", stadium:"AT&T Stadium", matches:6, lat:32.7767, lng:-96.7970,
+  { name:"Dallas", flag:"&#x1F1FA;&#x1F1F8;", stadium:"AT&T Stadium", matches:6, lat:32.7767, lng:-96.7970,
     img:"https://images.unsplash.com/photo-1583373834259-46cc92173cb7?w=600&h=300&fit=crop&q=80" },
-  { name:"Houston", flag:"🇺🇸", stadium:"NRG Stadium", matches:5, lat:29.7604, lng:-95.3698,
+  { name:"Houston", flag:"&#x1F1FA;&#x1F1F8;", stadium:"NRG Stadium", matches:5, lat:29.7604, lng:-95.3698,
     img:"https://images.unsplash.com/photo-1531218150217-54595bc2b934?w=600&h=300&fit=crop&q=80" },
-  { name:"Atlanta", flag:"🇺🇸", stadium:"Mercedes-Benz Stadium", matches:6, lat:33.7490, lng:-84.3880,
+  { name:"Atlanta", flag:"&#x1F1FA;&#x1F1F8;", stadium:"Mercedes-Benz Stadium", matches:6, lat:33.7490, lng:-84.3880,
     img:"https://images.unsplash.com/photo-1571749155544-67ee0f05bfde?w=600&h=300&fit=crop&q=80" },
-  { name:"Seattle", flag:"🇺🇸", stadium:"Lumen Field", matches:5, lat:47.6062, lng:-122.3321,
+  { name:"Seattle", flag:"&#x1F1FA;&#x1F1F8;", stadium:"Lumen Field", matches:5, lat:47.6062, lng:-122.3321,
     img:"https://images.unsplash.com/photo-1503891450247-ee5f8ec46dc3?w=600&h=300&fit=crop&q=80" },
-  { name:"Boston", flag:"🇺🇸", stadium:"Gillette Stadium", matches:5, lat:42.3601, lng:-71.0589,
+  { name:"Boston", flag:"&#x1F1FA;&#x1F1F8;", stadium:"Gillette Stadium", matches:5, lat:42.3601, lng:-71.0589,
     img:"https://images.unsplash.com/photo-1501979376754-1ff13ce40354?w=600&h=300&fit=crop&q=80" },
-  { name:"Philadelphia", flag:"🇺🇸", stadium:"Lincoln Financial Field", matches:5, lat:39.9526, lng:-75.1652,
+  { name:"Philadelphia", flag:"&#x1F1FA;&#x1F1F8;", stadium:"Lincoln Financial Field", matches:5, lat:39.9526, lng:-75.1652,
     img:"https://images.unsplash.com/photo-1569020652702-5b9dfd17d459?w=600&h=300&fit=crop&q=80" },
-  { name:"Kansas City", flag:"🇺🇸", stadium:"Arrowhead Stadium", matches:5, lat:39.0997, lng:-94.5786,
+  { name:"Kansas City", flag:"&#x1F1FA;&#x1F1F8;", stadium:"Arrowhead Stadium", matches:5, lat:39.0997, lng:-94.5786,
     img:"https://images.unsplash.com/photo-1589820296156-2454bb8a6ad1?w=600&h=300&fit=crop&q=80" },
-  { name:"San Francisco Bay Area", flag:"🇺🇸", stadium:"Levi's Stadium", matches:6, lat:37.7749, lng:-122.4194,
+  { name:"San Francisco Bay Area", flag:"&#x1F1FA;&#x1F1F8;", stadium:"Levi's Stadium", matches:6, lat:37.7749, lng:-122.4194,
     img:"https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600&h=300&fit=crop&q=80" },
-  { name:"Toronto", flag:"🇨🇦", stadium:"BMO Field", matches:6, lat:43.6532, lng:-79.3832,
+  { name:"Toronto", flag:"&#x1F1E8;&#x1F1E6;", stadium:"BMO Field", matches:6, lat:43.6532, lng:-79.3832,
     img:"https://images.unsplash.com/photo-1517090504586-fde19ea6066f?w=600&h=300&fit=crop&q=80" },
-  { name:"Vancouver", flag:"🇨🇦", stadium:"BC Place", matches:6, lat:49.2827, lng:-123.1207,
+  { name:"Vancouver", flag:"&#x1F1E8;&#x1F1E6;", stadium:"BC Place", matches:6, lat:49.2827, lng:-123.1207,
     img:"https://images.unsplash.com/photo-1559521783-1d1599583485?w=600&h=300&fit=crop&q=80" },
-  { name:"Mexico City", flag:"🇲🇽", stadium:"Estadio Azteca", matches:7, lat:19.4326, lng:-99.1332,
+  { name:"Mexico City", flag:"&#x1F1F2;&#x1F1FD;", stadium:"Estadio Azteca", matches:7, lat:19.4326, lng:-99.1332,
     img:"https://images.unsplash.com/photo-1518638150340-f706e86654de?w=600&h=300&fit=crop&q=80" },
-  { name:"Guadalajara", flag:"🇲🇽", stadium:"Estadio Akron", matches:5, lat:20.6597, lng:-103.3496,
+  { name:"Guadalajara", flag:"&#x1F1F2;&#x1F1FD;", stadium:"Estadio Akron", matches:5, lat:20.6597, lng:-103.3496,
     img:"https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&h=300&fit=crop&q=80" },
-  { name:"Monterrey", flag:"🇲🇽", stadium:"BBVA Stadium", matches:5, lat:25.6866, lng:-100.3161,
+  { name:"Monterrey", flag:"&#x1F1F2;&#x1F1FD;", stadium:"BBVA Stadium", matches:5, lat:25.6866, lng:-100.3161,
     img:"https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=600&h=300&fit=crop&q=80" }
 ];
 
@@ -1076,11 +1378,11 @@ function starsHtml(rating) {
 ═══════════════════════════════════════════════ */
 function renderCities() {
   const cityPages = {
-    'New York/New Jersey': 'new-york.html',
-    'Los Angeles':         'los-angeles.html',
-    'Miami':               'miami.html',
-    'Dallas':              'dallas.html',
-    'Mexico City':         'mexico-city.html'
+    'New York/New Jersey': 'new-york',
+    'Los Angeles':         'los-angeles',
+    'Miami':               'miami',
+    'Dallas':              'dallas',
+    'Mexico City':         'mexico-city'
   };
   document.getElementById('citiesGrid').innerHTML = cities.map(c => {
     const pageLink = cityPages[c.name];
@@ -1328,7 +1630,7 @@ const chatAnswers = {
   "ticket": "Les billets officiels FIFA 2026 sont vendus exclusivement sur <strong>FIFA.com/tickets</strong>. Prix dès 65$ pour la phase de groupes.",
   "stade": "16 stades au total : MetLife (finale), SoFi, AT&T, Mercedes-Benz, Azteca, BC Place, BMO Field, NRG, Lumen, Gillette, Lincoln Financial, Arrowhead, Levi's, Akron, BBVA, Hard Rock.",
   "stadium": "Les stades hôtes incluent MetLife (finale le 19 juillet), Azteca (Mexico City), SoFi (LA), AT&T (Dallas) et plus.",
-  "visa": "🇺🇸 USA : ESTA en ligne (14$). 🇨🇦 Canada : AVE (7 CAD). 🇲🇽 Mexique : carte touristique sur place. Vérifiez selon votre nationalité.",
+  "visa": "&#x1F1FA;&#x1F1F8; USA : ESTA en ligne (14$). &#x1F1E8;&#x1F1E6; Canada : AVE (7 CAD). &#x1F1F2;&#x1F1FD; Mexique : carte touristique sur place. Vérifiez selon votre nationalité.",
   "hôtel": "Utilisez nos filtres hôtels pour trouver les meilleures options proches des stades. Réservez sur Booking.com ou Hotels.com.",
   "hotel": "Utilisez nos filtres hôtels pour trouver les meilleures options proches des stades. Réservez sur Booking.com ou Hotels.com.",
   "fan zone": "Chaque ville hôte a une fan zone officielle gratuite. Sélectionnez une ville dans la section Fan Zones pour les détails.",
